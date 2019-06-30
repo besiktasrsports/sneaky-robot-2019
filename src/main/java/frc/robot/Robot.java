@@ -16,6 +16,10 @@ import frc.robot.commands.Autonomous;
 import frc.robot.commands.AutonomousDrivePID;
 import frc.robot.commands.AutonomousTurnPID;
 import frc.robot.commands.extendHM;
+import frc.robot.subsystems.Cargo;
+import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Hatch;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,7 +33,11 @@ public class Robot extends TimedRobot {
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
-  Command extendHM  = new extendHM();
+
+  Cargo m_cargo;
+  Climber m_climber;
+  DriveTrain m_driveTrain;
+  Hatch m_hatch;
 
   /**
    * This function is run when the robot is first started up and should be
@@ -40,6 +48,12 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     m_chooser.addOption("Default Autonomous", new Autonomous());
     SmartDashboard.putData("Auto mode", m_chooser);
+    m_cargo = new Cargo();
+    m_climber = new Climber();
+    m_driveTrain = new DriveTrain();
+    m_hatch = new Hatch();
+  
+  
   }
 
   /**
