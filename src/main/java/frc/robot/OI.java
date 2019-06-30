@@ -7,36 +7,95 @@
 
 package frc.robot;
 
-/**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
- */
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.*;
+
 public class OI {
-  //// CREATING BUTTONS
-  // One type of button is a joystick button which is any button on a
-  //// joystick.
-  // You create one by telling it which joystick it's on and which button
-  // number it is.
-  // Joystick stick = new Joystick(port);
-  // Button button = new JoystickButton(stick, buttonNumber);
 
-  // There are a few additional built in buttons you can use. Additionally,
-  // by subclassing Button you can create custom triggers and bind those to
-  // commands the same as any other Button.
+  // Define joysticks and buttons as public
+  public Joystick xbox;
+  public Joystick logitech;
+  // public JoystickButton xboxButton1;
+  public JoystickButton backTurnButton;
+  public JoystickButton forwardTurnButton;
+  public JoystickButton leftTurnButton;
+  public JoystickButton rightTurnButton;
+  public JoystickButton hatchThrowButton;
+  public JoystickButton compressorOpenButton;
+  public JoystickButton compressorCloseButton;
+  public JoystickButton visionTriggerButton;
+  public JoystickButton cargoJointUpButton;
+  public JoystickButton cargoJointDownButton;
+  public JoystickButton cargoIntakeButton;
+  public JoystickButton cargoThrowButton;
+  public JoystickButton liftArmExtendButton;
+  public JoystickButton liftArmRetractButton;
+  public JoystickButton climberMoveForwardButton;
+  public JoystickButton climberMoveBackwardButton;
+  public JoystickButton redlineShifterButton;
+  public JoystickButton liftLockButton;
+  public JoystickButton extendHMButton;
+  public JoystickButton retractHMButton;
 
-  //// TRIGGERING COMMANDS WITH BUTTONS
-  // Once you have a button, it's trivial to bind it to a button in one of
-  // three ways:
+  public OI() {
 
-  // Start the command when the button is pressed and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenPressed(new ExampleCommand());
+    xbox = new Joystick(0);
+    logitech = new Joystick(1);
+    // xboxButton1 = new JoystickButton(xbox, 1);
+    // xboxButton1.whenPressed(new ReleaseHatch()); 10
+    /*
+    backTurnButton = new JoystickButton(xbox , 1); // Turn to 180
+    forwardTurnButton = new JoystickButton(xbox , 4); // Turn to 0
+    leftTurnButton = new JoystickButton(xbox , 3); // Turn to -90
+    rightTurnButton = new JoystickButton(xbox , 2); // Turn to 90
+    */
+    backTurnButton = new JoystickButton(xbox , 1); // Extend Hatch Mechanism
+    forwardTurnButton = new JoystickButton(xbox , 4); // Retract Hatch Mechanism
+    hatchThrowButton = new JoystickButton(xbox , 6); // Hatch Throw
+    compressorOpenButton = new JoystickButton(xbox , 7); // Open Compressor
+    compressorCloseButton = new JoystickButton(xbox , 8); // Close Compressor
+    visionTriggerButton = new JoystickButton(xbox , 5); // Trigger Vision 
 
-  // Run the command while the button is being held down and interrupt it once
-  // the button is released.
-  // button.whileHeld(new ExampleCommand());
 
-  // Start the command when the button is released and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenReleased(new ExampleCommand());
+    cargoJointUpButton = new JoystickButton(logitech , 2); // Cargo Joint Up
+    cargoJointDownButton = new JoystickButton(logitech , 1); // Cargo Joint Down
+    cargoIntakeButton = new JoystickButton(logitech , 3); // Cargo Intake
+    cargoThrowButton = new JoystickButton(logitech , 4); // Cargo Throw
+    liftArmRetractButton =  new JoystickButton(logitech , 7); // Retract Arm
+    liftArmExtendButton = new JoystickButton(logitech , 8); // Extend Arm
+    climberMoveForwardButton = new JoystickButton(logitech, 5); // Snowblower Forward
+    climberMoveBackwardButton = new JoystickButton(logitech, 6); // Snowblower Backward
+    redlineShifterButton = new JoystickButton(logitech , 9); // Redline Shifter
+    liftLockButton = new JoystickButton(logitech, 10);
+
+    backTurnButton.whenPressed(new extendHM());
+    forwardTurnButton.whenPressed(new retractHM());
+    //leftTurnButton.whenPressed(new realAutonomousTurnPID(270));
+    //rightTurnButton.whenPressed(new realAutonomousTurnPID(90));
+    hatchThrowButton.whenPressed(new takeHatch());
+    compressorOpenButton.whenPressed(new openCompressor());
+    compressorCloseButton.whenPressed(new closeCompressor());
+    visionTriggerButton.whenPressed(new releaseHatch());
+
+    cargoJointUpButton.whenPressed(new cargoJointUp());
+    cargoJointDownButton.whenPressed(new cargoJointDown());
+    cargoIntakeButton.whileHeld(new takeCargo());
+    cargoThrowButton.whileHeld(new releaseCargo());
+    liftArmRetractButton.whileHeld(new retractArm());
+    liftArmExtendButton.whileHeld(new extendArm());
+    climberMoveBackwardButton.whileHeld(new liftDriveBackward());
+    climberMoveForwardButton.whileHeld(new liftDriveForward());
+    liftLockButton.whenPressed(new liftLockTrigger());
+
+  }
+
+  public Joystick getXbox() {
+    return xbox;
+  }
+
+  public Joystick getLogitech() {
+    return logitech;
+  }
+
 }

@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Autonomous;
+import frc.robot.commands.AutonomousDrivePID;
+import frc.robot.commands.AutonomousTurnPID;
+import frc.robot.commands.extendHM;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,6 +29,7 @@ public class Robot extends TimedRobot {
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+  Command extendHM  = new extendHM();
 
   /**
    * This function is run when the robot is first started up and should be
