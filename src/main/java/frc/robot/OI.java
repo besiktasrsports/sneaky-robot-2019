@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -40,8 +33,8 @@ public class OI {
 
   public OI() {
 
-    xbox = new Joystick(0);
-    logitech = new Joystick(1);
+    //xbox = new Joystick(0);
+    //logitech = new Joystick(1);
     // xboxButton1 = new JoystickButton(xbox, 1);
     // xboxButton1.whenPressed(new ReleaseHatch()); 10
     /*
@@ -50,15 +43,15 @@ public class OI {
     leftTurnButton = new JoystickButton(xbox , 3); // Turn to -90
     rightTurnButton = new JoystickButton(xbox , 2); // Turn to 90
     */
-    backTurnButton = new JoystickButton(xbox , 1); // Extend Hatch Mechanism
+   /* backTurnButton = new JoystickButton(xbox , 2); // Extend Hatch Mechanism
     forwardTurnButton = new JoystickButton(xbox , 4); // Retract Hatch Mechanism
     hatchThrowButton = new JoystickButton(xbox , 6); // Hatch Throw
     compressorOpenButton = new JoystickButton(xbox , 7); // Open Compressor
     compressorCloseButton = new JoystickButton(xbox , 8); // Close Compressor
-    visionTriggerButton = new JoystickButton(xbox , 5); // Trigger Vision 
+    visionTriggerButton = new JoystickButton(xbox , 5); // Trigger Vision */
 
 
-    cargoJointUpButton = new JoystickButton(logitech , 2); // Cargo Joint Up
+    /*cargoJointUpButton = new JoystickButton(logitech , 2); // Cargo Joint Up
     cargoJointDownButton = new JoystickButton(logitech , 1); // Cargo Joint Down
     cargoIntakeButton = new JoystickButton(logitech , 3); // Cargo Intake
     cargoThrowButton = new JoystickButton(logitech , 4); // Cargo Throw
@@ -69,16 +62,16 @@ public class OI {
     redlineShifterButton = new JoystickButton(logitech , 9); // Redline Shifter
     liftLockButton = new JoystickButton(logitech, 10);
 
-    backTurnButton.whenPressed(new extendHM());
+   /* backTurnButton.whenPressed(new extendHM());
     forwardTurnButton.whenPressed(new retractHM());
     //leftTurnButton.whenPressed(new realAutonomousTurnPID(270));
     //rightTurnButton.whenPressed(new realAutonomousTurnPID(90));
     hatchThrowButton.whenPressed(new takeHatch());
     compressorOpenButton.whenPressed(new openCompressor());
     compressorCloseButton.whenPressed(new closeCompressor());
-    visionTriggerButton.whenPressed(new releaseHatch());
+    visionTriggerButton.whenPressed(new releaseHatch());*/
 
-    cargoJointUpButton.whenPressed(new cargoJointUp());
+    /*cargoJointUpButton.whenPressed(new cargoJointUp());
     cargoJointDownButton.whenPressed(new cargoJointDown());
     cargoIntakeButton.whileHeld(new takeCargo());
     cargoThrowButton.whileHeld(new releaseCargo());
@@ -86,7 +79,8 @@ public class OI {
     liftArmExtendButton.whileHeld(new extendArm());
     climberMoveBackwardButton.whileHeld(new liftDriveBackward());
     climberMoveForwardButton.whileHeld(new liftDriveForward());
-    liftLockButton.whenPressed(new liftLockTrigger());
+    redlineShifterButton.whenPressed(new redlineShifter());
+    liftLockButton.whenPressed(new liftLockTrigger());*/
 
   }
 

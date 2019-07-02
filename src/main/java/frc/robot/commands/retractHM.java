@@ -7,33 +7,47 @@
 
 package frc.robot.commands;
 
+
+
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
 public class retractHM extends Command {
+  boolean flag = false;
   public retractHM() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+    requires(Robot.m_hatch);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
+    Robot.m_hatch.retractHM();
+  
+    System.out.println("retractHM");
+    Robot.vision.extendStatus.setBoolean(false);
+    flag=true;
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return flag;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+
+    Robot.m_hatch.freeHM();
+
   }
 
   // Called when another command which requires one or more of the same

@@ -8,38 +8,35 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.robot.sensors.*;
 
-public class liftLockTrigger extends Command {
-  public liftLockTrigger() {
+public class zeroYaw extends Command {
+  public zeroYaw() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_climber);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // System.out.println("Before command :" + Robot.m_climber.lockFlag);
-    Robot.m_climber.lockFlag = !Robot.m_climber.lockFlag;
-    // System.out.println("After command :" + Robot.m_climber.lockFlag);
+    NavX.zeroYaw();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.m_climber.commandFlag;
+    return NavX.zeroFlag;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    // Robot.m_climber.lockFlag = false;
   }
 
   // Called when another command which requires one or more of the same

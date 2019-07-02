@@ -8,38 +8,38 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
 
-public class liftLockTrigger extends Command {
-  public liftLockTrigger() {
+public class delay extends Command {
+  long startTime;
+	double seconds;
+  public delay(double _seconds) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_climber);
+    this.seconds = _seconds;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    startTime = System.currentTimeMillis();
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // System.out.println("Before command :" + Robot.m_climber.lockFlag);
-    Robot.m_climber.lockFlag = !Robot.m_climber.lockFlag;
-    // System.out.println("After command :" + Robot.m_climber.lockFlag);
+    System.out.println("DELAY VERIYORUMM");
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.m_climber.commandFlag;
+    return (System.currentTimeMillis() - startTime) > (int) (1000d * this.seconds);
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    // Robot.m_climber.lockFlag = false;
   }
 
   // Called when another command which requires one or more of the same

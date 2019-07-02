@@ -5,14 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
 public class liftUp extends Command {
   public liftUp() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.m_climber);
   }
 
   // Called just before this Command runs the first time
@@ -23,6 +26,7 @@ public class liftUp extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.m_climber.retractLeg();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -34,11 +38,13 @@ public class liftUp extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.m_climber.stopLeg();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }
