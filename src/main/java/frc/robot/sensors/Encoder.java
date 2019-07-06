@@ -8,9 +8,13 @@ package frc.robot.sensors;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import java.lang.Math;
 
 import frc.robot.Robot;
+import frc.robot.utils.Vision;
 
 public class Encoder {
     public static double Left_Encoder_Position;
@@ -23,6 +27,7 @@ public class Encoder {
     public static double encoderRound;
     public static double encoderPosition;
     public static double encoderZeroValue;
+    public  double x=27;
 
     public Encoder() {
        /* Robot.m_climber.LeftFrontLegExtenderMotor.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 1);
@@ -50,7 +55,7 @@ public class Encoder {
             Robot.m_driveTrain.driveTrainLeftFrontMotor.set(0);
             Robot.m_driveTrain.driveTrainLeftFrontMotor.set(0);
         }
-        */
+        
         
 
     }
@@ -72,11 +77,12 @@ public class Encoder {
         */
     }
 
-    public static double getEncoderPosition(double x) {
+    public  double getEncoderPosition() {
       /*  encoderValue = (Robot.m_climber.LeftFrontLegExtenderMotor.getSelectedSensorPosition()+ Robot.m_driveTrain.driveTrainLeftRearMotor.getSelectedSensorPosition())/2;
         encoderRound = encoderValue/4100;
         encoderPosition = encoderRound*2*Math.PI*15.24;
         return encoderPosition-encoderZeroValue;*/
+        
         return x;
     }
 

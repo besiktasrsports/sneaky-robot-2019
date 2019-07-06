@@ -10,6 +10,8 @@ package frc.robot.sensors;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Sendable;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import frc.robot.Robot; 
 
 public class NavX {
@@ -22,15 +24,11 @@ public class NavX {
     }
 
     public static float yawValue() {
-        float yawValue =  ahrs.getYaw();
-        float mappedYaw; 
-        if(yawValue < 0) {
-            mappedYaw = 360+yawValue;
-        }
-        else {
-            mappedYaw = yawValue;
-        }
-        return mappedYaw;
+        float yawValue = ahrs.getYaw();
+        Sendable mappedYaw; 
+       
+        return yawValue;
+        
     }
     public static void zeroYaw() {
         zeroFlag = false;

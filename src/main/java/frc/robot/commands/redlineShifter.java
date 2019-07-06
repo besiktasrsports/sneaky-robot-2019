@@ -19,12 +19,15 @@ public class redlineShifter extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.m_cargo.releaseCargo();
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     Robot.m_cargo.hShifter = !Robot.m_cargo.hShifter;
+    Robot.vision.shifter.setBoolean(Robot.m_cargo.hShifter);
   }
 
   // Make this return true when this Command no longer needs to run execute()

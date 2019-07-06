@@ -13,6 +13,8 @@ package frc.robot.subsystems;
 //import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 import frc.robot.commands.xboxDrive;
@@ -21,28 +23,26 @@ import frc.robot.commands.xboxDrive;
 public class DriveTrain extends Subsystem {
 
   // Define variables and actuators here as private:
-  // private WPI_TalonSRX leftRearTalon;
 
-  /*public WPI_TalonSRX driveTrainLeftFrontMotor;
-  public WPI_TalonSRX driveTrainLeftRearMotor;
-  public WPI_VictorSPX driveTrainRightFrontMotor;
-  public WPI_VictorSPX driveTrainRightRearMotor;
-  private RobotDrive robotDrive41;*/
+  public SpeedController driveTrainLeftFrontMotor;
+  public SpeedController driveTrainLeftRearMotor;
+  public SpeedController driveTrainRightFrontMotor;
+  public SpeedController driveTrainRightRearMotor;
+  private RobotDrive robotDrive41;
 
   public DriveTrain() {
     // Construct objects here
-    // leftFrontTalon = new WPI_TalonSRX(11);
 
-    /*driveTrainLeftFrontMotor = new WPI_TalonSRX(16);
+    driveTrainLeftFrontMotor = new Spark(16);
     driveTrainLeftFrontMotor.setInverted(true);
     
-    driveTrainLeftRearMotor = new WPI_TalonSRX(13);
+    driveTrainLeftRearMotor = new Spark(13);
     driveTrainLeftRearMotor.setInverted(true);
     
-    driveTrainRightFrontMotor = new WPI_VictorSPX(3);
+    driveTrainRightFrontMotor = new Spark(3);
     driveTrainRightFrontMotor.setInverted(true);
     
-    driveTrainRightRearMotor = new WPI_VictorSPX(4);
+    driveTrainRightRearMotor = new Spark(4);
     driveTrainRightRearMotor.setInverted(true);
 
     robotDrive41 = new RobotDrive(driveTrainLeftFrontMotor, driveTrainLeftRearMotor,
@@ -51,7 +51,7 @@ public class DriveTrain extends Subsystem {
     robotDrive41.setSafetyEnabled(false);
     robotDrive41.setExpiration(0.1);
     robotDrive41.setSensitivity(0.5);
-    robotDrive41.setMaxOutput(1.0);*/
+    robotDrive41.setMaxOutput(1.0);
 
   }
 
@@ -69,29 +69,32 @@ public class DriveTrain extends Subsystem {
   public void autonomousTurn(double speed) 
  	{
  		// if speed is - robot goes left, else right
- 	/*	driveTrainLeftFrontMotor.set(-speed);
+ 		driveTrainLeftFrontMotor.set(-speed);
  		driveTrainRightFrontMotor.set(-speed);
  		driveTrainLeftRearMotor.set(-speed);
- 		driveTrainRightRearMotor.set(-speed);*/
+ 		driveTrainRightRearMotor.set(-speed);
   } 
   public void autonomousDrive(double speed) 
   {
     // if speed is - robot goes left, else right
-   /* driveTrainLeftFrontMotor.set(speed);
+    driveTrainLeftFrontMotor.set(speed);
     driveTrainRightFrontMotor.set(-speed-0.05);
     driveTrainLeftRearMotor.set(speed);
-    driveTrainRightRearMotor.set(-speed-0.05);*/
+    driveTrainRightRearMotor.set(-speed-0.05);
  } 
   public void autonomousStop() 
   {
     // if speed is - robot goes left, else right
-    /*driveTrainLeftFrontMotor.set(0);
+    driveTrainLeftFrontMotor.set(0);
     driveTrainRightFrontMotor.set(0);
     driveTrainLeftRearMotor.set(0);
-    driveTrainRightRearMotor.set(0);*/
+    driveTrainRightRearMotor.set(0);
   }
 
   public void driveBase() {
- //   robotDrive41.arcadeDrive(Robot.m_oi.xbox.getY(),Robot.m_oi.xbox.getX());
+    robotDrive41.arcadeDrive(Robot.m_oi.xbox.getY(),Robot.m_oi.xbox.getX());
+    Robot.vision.yAxisPrint.setDouble(-Robot.m_oi.logitech.getY());
+    Robot.vision.xAxisPrint.setDouble(Robot.m_oi.logitech.getX());
+
   }
 }

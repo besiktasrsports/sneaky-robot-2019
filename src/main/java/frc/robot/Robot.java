@@ -4,12 +4,15 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.Autonomous;
 import frc.robot.commands.AutonomousDrivePID;
 import frc.robot.commands.ForTurnPIDTest;
@@ -92,13 +95,20 @@ public class Robot extends TimedRobot {
     m_navx.zeroYaw();
     Robot.vision.x.setNumber(0);
     Robot.vision.navxAngle.setNumber(Robot.m_navx.yawValue());
-  //  vision.holdStatus.setBoolean(true);
+    vision.downLimitSwitchStatus.setDefaultBoolean(false);
+    vision.upLimitSwitchStatus.setDefaultBoolean(true);
+    SmartDashboard.putData("Gyro", m_navx.ahrs);
+    
+    
+    
+
+    //  vision.holdStatus.setBoolean(true);
    // vision.extendStatus.setBoolean(true);
   }
 
   @Override
   public void robotPeriodic() {
-    currentAngle = m_navx.yawValue();
+    //currentAngle = m_navx.yawValue();
     visionAngle = vision.angle.getDouble(0);
     // System.out.println(encoder.getEncoderPosition());
     /*
@@ -230,6 +240,8 @@ public class Robot extends TimedRobot {
       m_cargo.downLimitSwStatus = false;
     }
     */
+
+  System.out.println(m_oi.logitech.getPOV()); 
   }
 
    // vision.visionStarter.setBoolean(true);

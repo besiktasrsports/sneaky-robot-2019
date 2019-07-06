@@ -21,14 +21,18 @@ public class Vision {
     public static NetworkTableEntry angle;
     public static NetworkTableEntry extendStatus;
     public static NetworkTableEntry holdStatus;
+    public static NetworkTableEntry upLimitSwitchStatus;
+    public static NetworkTableEntry downLimitSwitchStatus;
+    public static NetworkTableEntry yAxisPrint;
+    public static NetworkTableEntry xAxisPrint;
     public static NetworkTableEntry x;
     public static NetworkTableEntry navxAngle;
-
     public static boolean buttonFlag;
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
     NetworkTable table = inst.getTable("datatable");
     public static boolean visionTriggerBool;
     public static DigitalOutput relay;
+    public static NetworkTableEntry shifter;
 
     public Vision() {
     relay = new DigitalOutput(8); // this pin needs to be changed
@@ -40,6 +44,14 @@ public class Vision {
     holdStatus = table.getEntry("Hatch Tutuyor");   
     x = table.getEntry("Variable"); 
     navxAngle = table.getEntry("Navx Açısı");
+    downLimitSwitchStatus = table.getEntry("Alt Limit Switch");
+    upLimitSwitchStatus = table.getEntry("Ust Limit Switch");
+    yAxisPrint = table.getEntry("Y Ekseni Hiz");
+    xAxisPrint = table.getEntry("X Ekseni Hiz");
+    shifter = table.getEntry("Shifter Status");
+
+
+
     
     
     }
