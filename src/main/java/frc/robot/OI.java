@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.POVButton;
 import frc.robot.commands.*;
 
 public class OI {
@@ -30,6 +31,7 @@ public class OI {
   public JoystickButton liftLockButton;
   public JoystickButton extendHMButton;
   public JoystickButton retractHMButton;
+  public POVButton povTestButton;
 
   public OI() {
 
@@ -61,6 +63,8 @@ public class OI {
     climberMoveBackwardButton = new JoystickButton(logitech, 6); // Snowblower Backward
     redlineShifterButton = new JoystickButton(logitech , 9); // Redline Shifter
     liftLockButton = new JoystickButton(logitech, 10);
+    povTestButton = new POVButton(logitech, 0);
+
 
     backTurnButton.whenPressed(new extendHM());
     forwardTurnButton.whenPressed(new retractHM());
@@ -81,7 +85,7 @@ public class OI {
     climberMoveForwardButton.whileHeld(new liftDriveForward());
     redlineShifterButton.whenPressed(new redlineShifter());
     liftLockButton.whenPressed(new liftLockTrigger());
-
+    povTestButton.whenPressed(new delay(5));
   }
 
   public Joystick getXbox() {

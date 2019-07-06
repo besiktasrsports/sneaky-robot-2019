@@ -64,8 +64,8 @@ public class Cargo extends Subsystem {
 
   @Override
   public void periodic() {
-     System.out.println("Up Limit is :"+cargoLimitUp.get());
-     System.out.println("Down Limit is :"+cargoLimitDown.get());
+   //  System.out.println("Up Limit is :"+cargoLimitUp.get());
+   //  System.out.println("Down Limit is :"+cargoLimitDown.get());
     if(upCounter.get() != 0 ){
       upLimitSwStatus = true;
       upCounter.reset();

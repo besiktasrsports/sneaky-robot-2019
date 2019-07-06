@@ -46,7 +46,7 @@ public class Climber extends Subsystem {
   @Override
   public void periodic() {
     // Put code here to be run every loop
-    System.out.println(lockFlag);
+   // System.out.println(lockFlag);
 
   }
 

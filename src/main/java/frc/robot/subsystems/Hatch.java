@@ -68,7 +68,7 @@ public class Hatch extends Subsystem {
     hmExtenderDB.set(DoubleSolenoid.Value.kOff);
     hatchGripperDB.set(DoubleSolenoid.Value.kOff);
     ps = false;
-   
+  
   }
 
   // Opens the cylinders
