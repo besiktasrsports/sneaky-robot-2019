@@ -5,15 +5,15 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.auto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class Autonomous extends CommandGroup {
+public class Left2HatchRocket extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public Autonomous() {
+  public Left2HatchRocket() {
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());
