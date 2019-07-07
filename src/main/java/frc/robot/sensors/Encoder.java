@@ -28,21 +28,29 @@ public class Encoder {
          
 
     }
-    public static void printLeftEncoderPosition(){
-        double leftEncoderPosition;
-        leftEncoderPosition = Robot.m_driveTrain.driveTrainFrontLeftMotor.getSelectedSensorPosition();
+    public static int getLeftEncoderPosition(){
+        int leftEncoderRaw;
+        leftEncoderRaw = Robot.m_driveTrain.driveTrainFrontLeftMotor.getSelectedSensorPosition();
         
-        System.out.println("Left Encoder Position   : " + leftEncoderPosition);
-        System.out.println("Left Round Number : " + leftEncoderPosition/4100); // Calculating round number 
-                                                                                 // 4100 comes from sensor's datasheet.
+        // System.out.println("Left Encoder Raw   : " + leftEncoderRaw);
+        // System.out.println("Left Round Number : " + leftEncoderRaw/4096); // Calculating round number 
+        // 1024*4 comes from sensor's datasheet.
         
+        // double leftEncoderDistance = 2*Math.PI*0.5*leftEncoderRaw/4096; // 2piR feet
+        return leftEncoderRaw;
 
     }
-    public static void printRightEncoderPosition() {
-        double rightEncoderPosition;
-        rightEncoderPosition = Robot.m_driveTrain.driveTrainFrontRightMotor.getSelectedSensorPosition();
-        System.out.println("Right Encoder Position   : " + rightEncoderPosition);
-        System.out.println("Right Round Number : " + rightEncoderPosition/4100);     
+    public static int getRightEncoderPosition() {
+        int rightEncoderRaw;
+        rightEncoderRaw = Robot.m_driveTrain.driveTrainFrontRightMotor.getSelectedSensorPosition();
+        
+        // System.out.println("Left Encoder Raw   : " + rightEncoderRaw);
+        // System.out.println("Left Round Number : " + rightEncoderRaw/4096); // Calculating round number 
+        // 1024*4 comes from sensor's datasheet.
+        
+        // double rightEncoderDistance = 2*Math.PI*0.5*rightEncoderRaw/4096; // 2piR feet
+
+        return rightEncoderRaw;     
     }
 
     /*public static void zeroEncoder() {
