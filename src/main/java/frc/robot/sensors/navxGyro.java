@@ -31,7 +31,6 @@ public double getYawValue(){
     return yawValue;
     }
 
-
 public double getPitchValue(){
     pitchValue = ahrs.getPitch();
     return pitchValue;
