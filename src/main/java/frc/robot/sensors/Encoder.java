@@ -19,7 +19,7 @@ public class Encoder {
         ***************************
         */    
         Robot.m_driveTrain.driveTrainFrontLeftMotor.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 1);
-        Robot.m_driveTrain.driveTrainFrontLeftMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+        Robot.m_driveTrain.driveTrainFrontLeftMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         Robot.m_driveTrain.driveTrainFrontLeftMotor.setSelectedSensorPosition(0);
         
         Robot.m_driveTrain.driveTrainFrontRightMotor.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 1);

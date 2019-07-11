@@ -8,6 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.auto.VisionTurnPID;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -17,6 +19,7 @@ public class OI {
  
   public Joystick xbox;
   public Joystick logitech;
+  public JoystickButton visionTurnButton;
 
 
   public OI(){
@@ -24,6 +27,10 @@ public class OI {
     xbox = new Joystick(0);
     logitech = new Joystick(1);
 
+    visionTurnButton = new JoystickButton(xbox, 1);
+
+    visionTurnButton.whileHeld(new VisionTurnPID());
+    
 
   }
 
@@ -34,4 +41,6 @@ public class OI {
   public Joystick getLogitech() {
     return logitech;
   }
+
+
 }

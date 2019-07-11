@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.auto.Autonomous;
 import frc.robot.subsystems.*;
+import frc.robot.util.SneakyTables;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,12 +24,16 @@ import frc.robot.subsystems.*;
  * project.
  */
 public class Robot extends TimedRobot {
-  // Construct Subsystems
+  // Define Subsystems
   public static DriveTrain m_driveTrain;
   public static Arm m_arm;
   public static Climber m_climber;
   public static Intake m_intake;
-  // Construct OI
+  // Define Utils
+  public static SneakyTables m_sneakyTables;
+  // Define Sensors
+
+  // Define OI
   public static OI m_oi;
   Autonomous autoCG;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -39,12 +44,18 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    // Construct Subsystems
     m_driveTrain = new DriveTrain();
     m_arm = new Arm();
     m_climber = new Climber();
     m_intake = new Intake();
     autoCG = new Autonomous();
+    // Construct Utils
+    m_sneakyTables = new SneakyTables();
+
+    // Construct OI
     m_oi = new OI();
+
     
     SmartDashboard.putData("Auto mode", m_chooser);
   }

@@ -8,16 +8,21 @@
 package frc.robot.commands.auto;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
 public class VisionTurnPID extends Command {
+  double angleToTurn;
   public VisionTurnPID() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    angleToTurn = Robot.m_sneakyTables.getVisionAngleToTurn();
+    System.out.println(angleToTurn);
   }
 
   // Called repeatedly when this Command is scheduled to run
