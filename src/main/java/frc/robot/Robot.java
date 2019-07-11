@@ -7,12 +7,16 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.RedlineTestPID;
+import frc.robot.commands.test;
 import frc.robot.commands.auto.Autonomous;
+import frc.robot.sensors.Encoder;
 import frc.robot.subsystems.*;
 
 /**
@@ -28,6 +32,8 @@ public class Robot extends TimedRobot {
   public static Arm m_arm;
   public static Climber m_climber;
   public static Intake m_intake;
+  // Construsct Sensors
+  public static Encoder m_encoder;
   // Construct OI
   public static OI m_oi;
   Autonomous autoCG;
@@ -43,8 +49,11 @@ public class Robot extends TimedRobot {
     m_arm = new Arm();
     m_climber = new Climber();
     m_intake = new Intake();
+    m_encoder = new Encoder();
+
     autoCG = new Autonomous();
     m_oi = new OI();
+    CameraServer.getInstance().startAutomaticCapture();
     
     SmartDashboard.putData("Auto mode", m_chooser);
   }
@@ -89,11 +98,10 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     Scheduler.getInstance().removeAll();
-    
-    //autoCG.addSequential(new ExampleCommand());
-
+    Robot.m_driveTrain.driveTrainFrontLeftMotor.setSelectedSensorPosition(0);
+    //autoCG.addSequential(new RedlineTestPID(10));
     autoCG.start();
-   
+    
   }
 
   /**
@@ -119,6 +127,10 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    m_encoder.printEncoderVelocity();
+    
+
+    
   }
 
   /**

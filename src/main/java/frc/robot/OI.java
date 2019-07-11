@@ -8,6 +8,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.RedlineTestForward;
+import frc.robot.commands.RedlineTestReverse;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -17,14 +20,19 @@ public class OI {
  
   public Joystick xbox;
   public Joystick logitech;
-
+  private JoystickButton redlineTestButton;
+  private JoystickButton redlineTestButton2;
 
   public OI(){
 
     xbox = new Joystick(0);
     logitech = new Joystick(1);
+    redlineTestButton = new JoystickButton(xbox,4);
+    redlineTestButton2 = new JoystickButton(xbox,2);
 
 
+    redlineTestButton.whenPressed(new RedlineTestForward());
+    redlineTestButton2.whenPressed(new RedlineTestReverse());
   }
 
   public Joystick getXbox() {
