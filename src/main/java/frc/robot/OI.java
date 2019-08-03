@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.RedlineTestForward;
 import frc.robot.commands.RedlineTestReverse;
+import frc.robot.commands.relayTest;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -31,9 +32,131 @@ public class OI {
     redlineTestButton2 = new JoystickButton(xbox,2);
 
 
-    redlineTestButton.whenPressed(new RedlineTestForward());
-    redlineTestButton2.whenPressed(new RedlineTestReverse());
+    //redlineTestButton.whenPressed(new RedlineTestForward());
+    redlineTestButton2.whenPressed(new relayTest());
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
   public Joystick getXbox() {
     return xbox;

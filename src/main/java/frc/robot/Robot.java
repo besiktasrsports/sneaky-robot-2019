@@ -14,10 +14,12 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.RedlineTestPID;
+import frc.robot.commands.relayTest;
 import frc.robot.commands.test;
 import frc.robot.commands.auto.Autonomous;
 import frc.robot.sensors.Encoder;
 import frc.robot.subsystems.*;
+import frc.robot.utils.Vision;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,6 +34,7 @@ public class Robot extends TimedRobot {
   public static Arm m_arm;
   public static Climber m_climber;
   public static Intake m_intake;
+  public static Vision m_vision;
   // Construsct Sensors
   public static Encoder m_encoder;
   // Construct OI
@@ -50,7 +53,7 @@ public class Robot extends TimedRobot {
     m_climber = new Climber();
     m_intake = new Intake();
     m_encoder = new Encoder();
-
+    m_vision = new Vision();
     autoCG = new Autonomous();
     m_oi = new OI();
     CameraServer.getInstance().startAutomaticCapture();
@@ -99,7 +102,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     Scheduler.getInstance().removeAll();
     Robot.m_driveTrain.driveTrainFrontLeftMotor.setSelectedSensorPosition(0);
-    //autoCG.addSequential(new RedlineTestPID(10));
+    //autoCG.addSequential(new relayTest());
     autoCG.start();
     
   }
