@@ -17,9 +17,10 @@ public class Encoder {
         ***************************
         *   CONFIGURING ENCODERS  *
         ***************************
-        */    
+        */  
+        /*  
       //  Robot.m_driveTrain.driveTrainFrontLeftMotor.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 1);
-        Robot.m_intake.redlineTestMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+       // Robot.m_intake.redlineTestMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
         //Robot.m_driveTrain.driveTrainFrontRightMotor.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 1);
         //Robot.m_driveTrain.driveTrainFrontRightMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
         //Robot.m_driveTrain.driveTrainFrontRightMotor.setSelectedSensorPosition(0);
@@ -47,9 +48,9 @@ public class Encoder {
         
     }*/
     
-    public static void printEncoderVelocity(){
+   // public static void printEncoderVelocity(){
        // double rightVelocity = Robot.m_driveTrain.driveTrainFrontRightMotor.getSelectedSensorVelocity(); 
-        double leftVelocity = Robot.m_intake.redlineTestMotor.getSelectedSensorVelocity();
+        //double leftVelocity = Robot.m_intake.redlineTestMotor.getSelectedSensorVelocity();
 
 
      //   System.out.println("Right Encoder Velocity is : "+rightVelocity);
@@ -57,5 +58,5 @@ public class Encoder {
 
     }
 
-
+    
 }

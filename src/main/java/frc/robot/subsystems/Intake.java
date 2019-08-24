@@ -11,7 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
-import frc.robot.commands.test;
+
 
 /**
  * Add your docs here.
@@ -19,10 +19,10 @@ import frc.robot.commands.test;
 public class Intake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public final WPI_TalonSRX redlineTestMotor;
+ // public final WPI_TalonSRX redlineTestMotor;
   public Intake(){
 
-    redlineTestMotor = new WPI_TalonSRX(4);
+   // redlineTestMotor = new WPI_TalonSRX(4);
 
 
   }
@@ -30,11 +30,11 @@ public class Intake extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new test());
+   
   }
 
   public void redlineTest(double speed){
-    redlineTestMotor.set(speed);
+    //redlineTestMotor.set(speed);
 
   }
 }

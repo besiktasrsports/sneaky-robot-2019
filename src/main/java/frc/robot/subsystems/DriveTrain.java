@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Robot;
+import frc.robot.commands.xboxDrive;
 
 /**
  * Add your docs here.
@@ -22,22 +23,23 @@ import frc.robot.Robot;
 public class DriveTrain extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public WPI_VictorSPX driveTrainFrontLeftMotor;
-  public WPI_VictorSPX driveTrainFrontRightMotor;
+  public WPI_TalonSRX driveTrainFrontLeftMotor;
+  public WPI_TalonSRX driveTrainFrontRightMotor;
   public WPI_VictorSPX driveTrainRearLeftMotor;
   public WPI_VictorSPX driveTrainRearRightMotor;
   public SpeedControllerGroup rightSide;
   public SpeedControllerGroup leftSide;
+  public boolean driveTrainMode = false;
   private DifferentialDrive differentialDrive41;
 
 
 
   public DriveTrain(){
 
-    driveTrainFrontLeftMotor = new WPI_VictorSPX(14);
+    driveTrainFrontLeftMotor = new WPI_TalonSRX(12);
     driveTrainFrontLeftMotor.setInverted(true);
 
-    driveTrainFrontRightMotor = new WPI_VictorSPX(13);
+    driveTrainFrontRightMotor = new WPI_TalonSRX(13);
     driveTrainFrontRightMotor.setInverted(true);
 
     driveTrainRearLeftMotor = new WPI_VictorSPX(14);
@@ -62,6 +64,7 @@ public class DriveTrain extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new xboxDrive());
   }
   public void autonomousTurn(double speed) 
  	{
@@ -84,9 +87,15 @@ public class DriveTrain extends Subsystem {
   }
 
   public void driveBase() {
-    // Arcade Drive
-    differentialDrive41.arcadeDrive(Robot.m_oi.xbox.getY(),Robot.m_oi.xbox.getX());
-    // Cheesy Drive
-    // differentialDrive41.curvatureDrive(Robot.m_oi.xbox.getY(),Robot.m_oi.xbox.getX(), Robot.m_oi.xbox.getRawButton(0)) ;
+    if(driveTrainMode == false){
+      // Cheesy Drive
+      differentialDrive41.curvatureDrive(Robot.m_oi.xbox.getY(),-Robot.m_oi.xbox.getX(), Robot.m_oi.xbox.getRawButton(1));
+    }
+    else{
+      // Arcade Drive
+      differentialDrive41.arcadeDrive(Robot.m_oi.xbox.getY(),-Robot.m_oi.xbox.getX());
+    }
+    
+    
   }
 }

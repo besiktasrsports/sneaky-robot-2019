@@ -13,9 +13,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.RedlineTestPID;
-import frc.robot.commands.relayTest;
-import frc.robot.commands.test;
 import frc.robot.commands.auto.Autonomous;
 import frc.robot.sensors.Encoder;
 import frc.robot.subsystems.*;
@@ -101,7 +98,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     Scheduler.getInstance().removeAll();
-    Robot.m_driveTrain.driveTrainFrontLeftMotor.setSelectedSensorPosition(0);
+   // Robot.m_driveTrain.driveTrainFrontLeftMotor.setSelectedSensorPosition(0);
     //autoCG.addSequential(new relayTest());
     autoCG.start();
     
@@ -130,7 +127,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    m_encoder.printEncoderVelocity();
+   // m_encoder.printEncoderVelocity();
     
 
     

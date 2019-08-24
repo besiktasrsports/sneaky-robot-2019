@@ -9,9 +9,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.RedlineTestForward;
-import frc.robot.commands.RedlineTestReverse;
-import frc.robot.commands.relayTest;
+import frc.robot.commands.DriveTrainModeChanger;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -21,19 +20,20 @@ public class OI {
  
   public Joystick xbox;
   public Joystick logitech;
-  private JoystickButton redlineTestButton;
-  private JoystickButton redlineTestButton2;
+  private JoystickButton driveTrainModeChangerButton;
+ 
 
   public OI(){
 
     xbox = new Joystick(0);
     logitech = new Joystick(1);
-    redlineTestButton = new JoystickButton(xbox,4);
-    redlineTestButton2 = new JoystickButton(xbox,2);
+    driveTrainModeChangerButton = new JoystickButton(xbox,1);
+    //redlineTestButton2 = new JoystickButton(xbox,2);
 
 
     //redlineTestButton.whenPressed(new RedlineTestForward());
-    redlineTestButton2.whenPressed(new relayTest());
+    driveTrainModeChangerButton.whileHeld(new DriveTrainModeChanger());
+   // redlineTestButton2.whenPressed(new relayTest());
   }
 
 
