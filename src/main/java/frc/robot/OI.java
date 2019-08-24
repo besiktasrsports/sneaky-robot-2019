@@ -35,7 +35,7 @@ public class OI {
     xbox = new Joystick(0);
     buttonPanel = new Joystick(1);
     driveTrainModeChangerButton = new JoystickButton(xbox, 1);
-    toggleCompressorButton = new JoystickButton(xbox, 11);
+    toggleCompressorButton = new JoystickButton(xbox, 10);
     takeObjectButton = new JoystickButton(xbox, 2);
     releaseObjectButton = new JoystickButton(xbox, 3);
     intakeStateChangerButton = new JoystickButton(xbox, 4);

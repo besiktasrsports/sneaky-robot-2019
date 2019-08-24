@@ -23,6 +23,7 @@ public class Intake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public String intakeState;
+  public boolean compressorState = false;
   public boolean intakeStateChangeBoolean = false;
   private final WPI_TalonSRX leftIntakeMotor;
   private final WPI_TalonSRX rightIntakeMotor;

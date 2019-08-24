@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class ToggleCompressor extends Command {
-  private boolean compressorState;
   public ToggleCompressor() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -22,13 +21,13 @@ public class ToggleCompressor extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    compressorState = !compressorState;
+    Robot.m_intake.compressorState = !Robot.m_intake.compressorState;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(compressorState == true){
+    if(Robot.m_intake.compressorState == true){
       Robot.m_intake.compressor.setClosedLoopControl(true);
     }
     else{
