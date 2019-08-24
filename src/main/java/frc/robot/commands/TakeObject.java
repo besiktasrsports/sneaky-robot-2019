@@ -8,11 +8,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
 public class TakeObject extends Command {
   public TakeObject() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.m_intake);
   }
 
   // Called just before this Command runs the first time
@@ -23,6 +25,12 @@ public class TakeObject extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if(Robot.m_intake.intakeState == "CARGO"){
+      Robot.m_intake.intakeDrive(-1);
+    }
+    else if(Robot.m_intake.intakeState == "HATCH"){
+      Robot.m_intake.intakeDrive(-1);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

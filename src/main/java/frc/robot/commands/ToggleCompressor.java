@@ -10,28 +10,30 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ReleaseObject extends Command {
-  public ReleaseObject() {
+public class ToggleCompressor extends Command {
+  private boolean compressorState;
+  public ToggleCompressor() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_intake);
+    
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    compressorState = !compressorState;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.m_intake.intakeState == "CARGO"){
-      Robot.m_intake.intakeDrive(0.4);
+    if(compressorState == true){
+      Robot.m_intake.compressor.setClosedLoopControl(true);
     }
-    else if(Robot.m_intake.intakeState == "HATCH"){
-      Robot.m_intake.intakeDrive(1);
+    else{
+      Robot.m_intake.compressor.setClosedLoopControl(false);
     }
-   
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -43,13 +45,11 @@ public class ReleaseObject extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_intake.intakeDrive(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

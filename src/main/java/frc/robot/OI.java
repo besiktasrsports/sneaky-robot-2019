@@ -10,6 +10,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.DriveTrainModeChanger;
+import frc.robot.commands.IntakeConverter;
+import frc.robot.commands.ReleaseObject;
+import frc.robot.commands.TakeObject;
+import frc.robot.commands.ToggleCompressor;
 
 
 /**
@@ -19,22 +23,41 @@ import frc.robot.commands.DriveTrainModeChanger;
 public class OI {
  
   public Joystick xbox;
-  public Joystick logitech;
+  public Joystick buttonPanel;
   private JoystickButton driveTrainModeChangerButton;
+  private JoystickButton toggleCompressorButton;
+  private JoystickButton takeObjectButton;
+  private JoystickButton releaseObjectButton;
+  private JoystickButton intakeStateChangerButton;
  
-
   public OI(){
 
     xbox = new Joystick(0);
-    logitech = new Joystick(1);
-    driveTrainModeChangerButton = new JoystickButton(xbox,1);
-    //redlineTestButton2 = new JoystickButton(xbox,2);
+    buttonPanel = new Joystick(1);
+    driveTrainModeChangerButton = new JoystickButton(xbox, 1);
+    toggleCompressorButton = new JoystickButton(xbox, 11);
+    takeObjectButton = new JoystickButton(xbox, 2);
+    releaseObjectButton = new JoystickButton(xbox, 3);
+    intakeStateChangerButton = new JoystickButton(xbox, 4);
 
 
-    //redlineTestButton.whenPressed(new RedlineTestForward());
+    
     driveTrainModeChangerButton.whileHeld(new DriveTrainModeChanger());
-   // redlineTestButton2.whenPressed(new relayTest());
+    toggleCompressorButton.whileHeld(new ToggleCompressor());
+    takeObjectButton.whileHeld(new TakeObject());
+    releaseObjectButton.whileHeld(new ReleaseObject());
+    intakeStateChangerButton.whileHeld(new IntakeConverter());
+  
   }
+
+  public Joystick getXbox() {
+    return xbox;
+  }
+
+  public Joystick getButtonPanel() {
+    return buttonPanel;
+  }
+}
 
 
 
@@ -158,11 +181,4 @@ public class OI {
 
   
 
-  public Joystick getXbox() {
-    return xbox;
-  }
-
-  public Joystick getLogitech() {
-    return logitech;
-  }
-}
+  
