@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -25,15 +26,16 @@ public class Intake extends Subsystem {
   public String intakeState;
   public boolean compressorState = false;
   public boolean intakeStateChangeBoolean = false;
-  private final WPI_TalonSRX leftIntakeMotor;
-  private final WPI_TalonSRX rightIntakeMotor;
+  private final WPI_VictorSPX leftIntakeMotor;
+  private final WPI_VictorSPX rightIntakeMotor;
   private final DoubleSolenoid stateChangeCyclinder;
   public final Compressor compressor;
 
   public Intake(){
 
-    leftIntakeMotor = new WPI_TalonSRX(16);
-    rightIntakeMotor = new WPI_TalonSRX(17);
+    leftIntakeMotor = new WPI_VictorSPX(16);
+    rightIntakeMotor = new WPI_VictorSPX(17);
+    rightIntakeMotor.setInverted(true);
     compressor = new Compressor(0);
     stateChangeCyclinder = new DoubleSolenoid(1,2);
   }

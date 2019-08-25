@@ -17,7 +17,7 @@ public class Encoder {
         ***************************
         *   CONFIGURING ENCODERS  *
         ***************************
-        */  
+        */ 
         /*  
       //  Robot.m_driveTrain.driveTrainFrontLeftMotor.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 1);
        // Robot.m_intake.redlineTestMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);

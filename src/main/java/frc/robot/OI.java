@@ -9,11 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.DriveTrainModeChanger;
-import frc.robot.commands.IntakeConverter;
-import frc.robot.commands.ReleaseObject;
-import frc.robot.commands.TakeObject;
-import frc.robot.commands.ToggleCompressor;
+import frc.robot.commands.*;
 
 
 /**
@@ -29,6 +25,9 @@ public class OI {
   private JoystickButton takeObjectButton;
   private JoystickButton releaseObjectButton;
   private JoystickButton intakeStateChangerButton;
+  private JoystickButton rotateArmForwardButton;
+  private JoystickButton rotateArmBackwardButton;
+
  
   public OI(){
 
@@ -39,6 +38,9 @@ public class OI {
     takeObjectButton = new JoystickButton(xbox, 2);
     releaseObjectButton = new JoystickButton(xbox, 3);
     intakeStateChangerButton = new JoystickButton(xbox, 4);
+    rotateArmForwardButton  = new JoystickButton(xbox, 5);
+    rotateArmBackwardButton  = new JoystickButton(xbox, 6);
+
 
 
     
@@ -47,6 +49,8 @@ public class OI {
     takeObjectButton.whileHeld(new TakeObject());
     releaseObjectButton.whileHeld(new ReleaseObject());
     intakeStateChangerButton.whileHeld(new IntakeConverter());
+    rotateArmForwardButton.whileHeld(new armForward());
+    rotateArmBackwardButton.whileHeld(new armBackward());
   
   }
 

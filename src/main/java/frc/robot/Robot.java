@@ -55,7 +55,7 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
 
     CameraServer.getInstance().startAutomaticCapture();
-    m_intake.compressor.setClosedLoopControl(true);
+    m_intake.compressor.setClosedLoopControl(false);
     SmartDashboard.putData("Auto mode", m_chooser);
   }
 

@@ -8,16 +8,30 @@
 package frc.robot.commands.auto;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
 public class ArmTurnPID extends Command {
+
+  double currentAngle;
+  public double targetRound;
+  double accuracy = 3;
+  double error;
+  double old_error;
+  double kP = 0.009;
+  double kI = 0;
+  double kD = 0.08;
+  double power;
+  int trueFlag; 
+
   public ArmTurnPID() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.m_arm);
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {
+  protected void initialize() { 
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -28,12 +42,16 @@ public class ArmTurnPID extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    if(trueFlag>=5){
+      return true;}
+    else{
+      return false;
+    }
   }
-
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.m_arm.stopArm();
   }
 
   // Called when another command which requires one or more of the same
