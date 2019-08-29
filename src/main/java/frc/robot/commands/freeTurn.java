@@ -10,8 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class TakeObject extends Command {
-  public TakeObject() {
+public class freeTurn extends Command {
+  public freeTurn() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_intake);
@@ -20,17 +20,20 @@ public class TakeObject extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.m_intake.intakeState == "CARGO"){
-      Robot.m_intake.intakeDrive(-0.3);
+    if(Robot.m_intake.intakeState == "HATCH"){
+      Robot.m_intake.intakeDrive(-0.1);
     }
-    else if(Robot.m_intake.intakeState == "HATCH"){
-      Robot.m_intake.intakeDrive(-0.3);
+    else{
+      Robot.m_intake.intakeDrive(0);
     }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -42,25 +45,11 @@ public class TakeObject extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    if(Robot.m_intake.intakeState == "HATCH"){
-      Robot.m_intake.intakeDrive(0);
-    }
-    else{
-      Robot.m_intake.intakeDrive(0);
-    }
-   
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    if(Robot.m_intake.intakeState == "HATCH"){
-      Robot.m_intake.intakeDrive(0);
-    }
-    else{
-      end();
-    }
-    
   }
 }

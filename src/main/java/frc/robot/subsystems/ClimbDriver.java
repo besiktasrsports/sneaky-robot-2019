@@ -7,26 +7,21 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Add your docs here.
  */
-public class Climber extends Subsystem {
-
-  private WPI_TalonSRX climbMotor;
-  private WPI_TalonSRX climbMotor2;
-  
+public class ClimbDriver extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public Climber(){
+  private WPI_VictorSPX climbMovementMotor;
 
-    climbMotor = new WPI_TalonSRX(10);
-    climbMotor2 = new WPI_TalonSRX(18);
-    
-
+  public ClimbDriver(){
+    climbMovementMotor = new WPI_VictorSPX(19);
   }
   @Override
   public void initDefaultCommand() {
@@ -34,10 +29,7 @@ public class Climber extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void climbDrive(double speed){
-    climbMotor.set(speed);
-    climbMotor2.set(-speed);
+  public void climbDriveForward(double speed){
+    climbMovementMotor.set(speed);
   }
-
-  
 }

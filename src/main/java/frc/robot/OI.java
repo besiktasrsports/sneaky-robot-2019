@@ -27,30 +27,39 @@ public class OI {
   private JoystickButton intakeStateChangerButton;
   private JoystickButton rotateArmForwardButton;
   private JoystickButton rotateArmBackwardButton;
+  private JoystickButton climberPushButton;
+  private JoystickButton climberReleaseButton;
+  private JoystickButton climbMoveForwardButton;
 
  
   public OI(){
 
     xbox = new Joystick(0);
     buttonPanel = new Joystick(1);
-    driveTrainModeChangerButton = new JoystickButton(xbox, 1);
+    driveTrainModeChangerButton = new JoystickButton(xbox, 11);
     toggleCompressorButton = new JoystickButton(xbox, 10);
     takeObjectButton = new JoystickButton(xbox, 2);
     releaseObjectButton = new JoystickButton(xbox, 3);
     intakeStateChangerButton = new JoystickButton(xbox, 4);
     rotateArmForwardButton  = new JoystickButton(xbox, 5);
     rotateArmBackwardButton  = new JoystickButton(xbox, 6);
+    climberPushButton = new JoystickButton(xbox, 7);
+    climberReleaseButton = new JoystickButton(xbox, 8);
+    climbMoveForwardButton = new JoystickButton(xbox, 1);
 
 
 
     
-    driveTrainModeChangerButton.whileHeld(new DriveTrainModeChanger());
+    //driveTrainModeChangerButton.whileHeld(new DriveTrainModeChanger());
     toggleCompressorButton.whileHeld(new ToggleCompressor());
     takeObjectButton.whileHeld(new TakeObject());
     releaseObjectButton.whileHeld(new ReleaseObject());
     intakeStateChangerButton.whileHeld(new IntakeConverter());
     rotateArmForwardButton.whileHeld(new armForward());
     rotateArmBackwardButton.whileHeld(new armBackward());
+    climberPushButton.whileHeld(new climbPush());
+    climberReleaseButton.whileHeld(new climbRelease());
+    climbMoveForwardButton.whileHeld(new climbDriveForward());
   
   }
 

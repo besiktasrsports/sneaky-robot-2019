@@ -48,12 +48,12 @@ public class Arm extends Subsystem {
 
   public void rotateArmForward()
   {
-    armMotor.set(0.3);
+    armMotor.set(0.7);
   }
 
   public void rotateArmBackward()
   {
-    armMotor.set(-0.3);
+    armMotor.set(-0.7);
   }
 
   public void rotateArm(double speed){

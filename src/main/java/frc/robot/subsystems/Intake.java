@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
+import frc.robot.commands.freeTurn;
 
 
 /**
@@ -37,12 +38,13 @@ public class Intake extends Subsystem {
     rightIntakeMotor = new WPI_VictorSPX(17);
     rightIntakeMotor.setInverted(true);
     compressor = new Compressor(0);
-    stateChangeCyclinder = new DoubleSolenoid(1,2);
+    stateChangeCyclinder = new DoubleSolenoid(1,7);
   }
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new freeTurn());
    
   }
 
