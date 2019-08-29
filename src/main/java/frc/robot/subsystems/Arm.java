@@ -21,6 +21,8 @@ public class Arm extends Subsystem {
   // here. Call these from Commands.
   public String armState;
   private final WPI_TalonSRX armMotor;
+  private final double kEncoderPositionToAngle = 1/4388; // 1/4260
+  private final double kEncoderPositionAt0 = 360244.0;
 
 
   public Arm()
@@ -34,26 +36,15 @@ public class Arm extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
     setDefaultCommand(new ArmTurnPID());
   }
 
   // Return Angle
   public double readArmEncoder()
   {
-    System.out.println("Arm position:" + armMotor.getSelectedSensorPosition());
-    return(armMotor.getSelectedSensorPosition());
-  }
-
-  public void rotateArmForward()
-  {
-    armMotor.set(0.7);
-  }
-
-  public void rotateArmBackward()
-  {
-    armMotor.set(-0.7);
+    double armAngle = (kEncoderPositionAt0-armMotor.getSelectedSensorPosition())/kEncoderPositionToAngle;
+    System.out.println("Arm position:" + armAngle);
+    return armAngle;
   }
 
   public void rotateArm(double speed){

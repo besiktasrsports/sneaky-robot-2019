@@ -36,16 +36,16 @@ public class OI {
 
     xbox = new Joystick(0);
     buttonPanel = new Joystick(1);
-    driveTrainModeChangerButton = new JoystickButton(xbox, 11);
-    toggleCompressorButton = new JoystickButton(xbox, 10);
-    takeObjectButton = new JoystickButton(xbox, 2);
-    releaseObjectButton = new JoystickButton(xbox, 3);
-    intakeStateChangerButton = new JoystickButton(xbox, 4);
-    rotateArmForwardButton  = new JoystickButton(xbox, 5);
-    rotateArmBackwardButton  = new JoystickButton(xbox, 6);
     climberPushButton = new JoystickButton(xbox, 7);
     climberReleaseButton = new JoystickButton(xbox, 8);
-    climbMoveForwardButton = new JoystickButton(xbox, 1);
+    toggleCompressorButton = new JoystickButton(xbox, 10);
+    driveTrainModeChangerButton = new JoystickButton(xbox, 11);
+    takeObjectButton = new JoystickButton(buttonPanel, 10);
+    releaseObjectButton = new JoystickButton(buttonPanel, 11);
+    intakeStateChangerButton = new JoystickButton(buttonPanel, 12);
+    rotateArmForwardButton  = new JoystickButton(buttonPanel, 13);
+    rotateArmBackwardButton  = new JoystickButton(buttonPanel, 14);
+    climbMoveForwardButton = new JoystickButton(buttonPanel, 15);
 
 
 

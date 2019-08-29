@@ -71,6 +71,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    m_arm.readArmEncoder(); // Assign this to a variables
   }
 
   /**

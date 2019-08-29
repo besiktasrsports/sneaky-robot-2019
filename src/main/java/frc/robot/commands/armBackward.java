@@ -25,7 +25,7 @@ public class armBackward extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_arm.rotateArmBackward();
+    Robot.m_arm.rotateArm(0.7);
   }
 
   // Make this return true when this Command no longer needs to run execute()
