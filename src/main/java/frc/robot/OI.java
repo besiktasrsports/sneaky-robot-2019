@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.*;
+import frc.robot.commands.auto.ArmTurnPID;
 
 
 /**
@@ -18,15 +19,24 @@ import frc.robot.commands.*;
  */
 public class OI {
  
+  // Joysticks
   public Joystick xbox;
   public Joystick buttonPanel;
+  // Drivetrains
   private JoystickButton driveTrainModeChangerButton;
+  // Pneumatics
   private JoystickButton toggleCompressorButton;
+  // Intake
   private JoystickButton takeObjectButton;
   private JoystickButton releaseObjectButton;
   private JoystickButton intakeStateChangerButton;
+  // Arm
   private JoystickButton rotateArmForwardButton;
   private JoystickButton rotateArmBackwardButton;
+  private JoystickButton armToStartPositionButton;
+  private JoystickButton frontCargoToCargoShipButton;
+  private JoystickButton frontHatchButton;
+  // Climber
   private JoystickButton climberPushButton;
   private JoystickButton climberReleaseButton;
   private JoystickButton climbMoveForwardButton;
@@ -36,10 +46,17 @@ public class OI {
 
     xbox = new Joystick(0);
     buttonPanel = new Joystick(1);
+
+    // Xbox
     climberPushButton = new JoystickButton(xbox, 7);
     climberReleaseButton = new JoystickButton(xbox, 8);
     toggleCompressorButton = new JoystickButton(xbox, 10);
     driveTrainModeChangerButton = new JoystickButton(xbox, 11);
+
+    // Button Panel
+    frontHatchButton = new JoystickButton(buttonPanel, 7);
+    frontCargoToCargoShipButton = new JoystickButton(buttonPanel, 6);
+    armToStartPositionButton = new JoystickButton(buttonPanel, 5);
     takeObjectButton = new JoystickButton(buttonPanel, 10);
     releaseObjectButton = new JoystickButton(buttonPanel, 11);
     intakeStateChangerButton = new JoystickButton(buttonPanel, 12);
@@ -60,6 +77,10 @@ public class OI {
     climberPushButton.whileHeld(new climbPush());
     climberReleaseButton.whileHeld(new climbRelease());
     climbMoveForwardButton.whileHeld(new climbDriveForward());
+    armToStartPositionButton.whileHeld(new ArmTurnPID(90.0));
+    frontCargoToCargoShipButton.whileHeld(new ArmTurnPID(110.0));
+    frontHatchButton.whileHeld(new ArmTurnPID(180.0));
+
   
   }
 

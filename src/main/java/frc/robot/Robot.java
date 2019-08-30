@@ -71,7 +71,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    m_arm.readArmEncoder(); // Assign this to a variables
   }
 
   /**
@@ -132,6 +131,8 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
    // m_encoder.printEncoderVelocity();
+   m_arm.readArmEncoder(); // Assign this to a variables
+
     
 
     
