@@ -5,39 +5,34 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.auto;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class JoystickRotateArm extends Command {
-  public JoystickRotateArm() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+public class ChangeArmTargetAngle extends Command {
+  // May add this to another subsytem?
+  double _targetAngle;
+  public ChangeArmTargetAngle(double _angle) {
     requires(Robot.m_arm);
+    this._targetAngle = _angle;
   }
+
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.m_arm.targetAngle = _targetAngle;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_arm.rotateArm(Robot.m_oi.xbox.getRawAxis(3));
-    if(Robot.m_arm.readArmEncoder() < 90){
-      Robot.m_cameraServo.setServoAngle(180);
-    }
-    else{
-      Robot.m_cameraServo.setServoAngle(0);
-
-    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

@@ -10,7 +10,7 @@ package frc.robot.commands.auto;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ArmTurnPID extends Command {
+public class DefaultArmTurnPID extends Command {
 
   double currentAngle, targetAngle;
   double accuracy = 3; // x Degree accuracy
@@ -26,9 +26,8 @@ public class ArmTurnPID extends Command {
   double power = 0;
   int trueFlag; 
 
-  public ArmTurnPID(double _targetAngle) {
+  public DefaultArmTurnPID() {
     requires(Robot.m_arm);
-    this.targetAngle = _targetAngle;
   }
 
   // Called just before this Command runs the first time
@@ -40,72 +39,58 @@ public class ArmTurnPID extends Command {
   @Override
   protected void execute() {
     currentAngle = Robot.m_arm.readArmEncoder();
-    // targetAngle = Robot.m_arm.targetAngle;
-    currentError = currentAngle - targetAngle;
+    targetAngle = Robot.m_arm.targetAngle;
 
-    // Reset kI if targetAngleChange
-
-    // Cumulative error
-    totalError += currentError;
-    // Difference in error
-    errorDiff = currentError - prevError;
-
-    // Error Calculation
-    if (currentError < 0) 
-		{
-			targetPower = kP*currentError + kD*errorDiff + kI*totalError;	
-		}
-		else 
-		{
-			targetPower =  kP*currentError + kD*errorDiff + kI*totalError;
-    }
-    /*
-    // Increment or decrement power slowly
-    if(power < targetPower)
+    if(targetAngle == 500.0)  // Do Js control
     {
-      power += kPowerChange;
+      Robot.m_arm.rotateArm(Robot.m_oi.xbox.getRawAxis(3));
     }
     else
     {
-      power -= kPowerChange;
+      currentError = currentAngle - targetAngle;
+
+      // Reset kI if targetAngleChange
+
+      // Cumulative error
+      totalError += currentError;
+      // Difference in error
+      errorDiff = currentError - prevError;
+
+      // Error Calculation
+      if (currentError < 0) 
+      {
+        targetPower = kP*currentError + kD*errorDiff + kI*totalError;	
+      }
+      else 
+      {
+        targetPower =  kP*currentError + kD*errorDiff + kI*totalError;
+      }
+
+      power = targetPower;
+
+      
+
+      // Apply power to the motor
+      Robot.m_arm.rotateArm(power);
+      System.out.println("Arm power to apply: " + power);
+      // Get previous error
+      prevError = currentError;
     }
-    */
-    power = targetPower;
-
-    
-
-    // Apply power to the motor
-    Robot.m_arm.rotateArm(power);
-    System.out.println("Arm power to apply: " + power);
-    // Get previous error
-    prevError = currentError;
-
-    // Check if we are stable
-    /*
-    if(currentAngle < targetAngle + accuracy && currentAngle > targetAngle -accuracy) 
+    if(Robot.m_arm.readArmEncoder() < 90)
     {
-      trueFlag++;
+      Robot.m_cameraServo.setServoAngle(180);
     }
-    else 
+    else
     {
-      trueFlag = 0;
+      Robot.m_cameraServo.setServoAngle(0);
     }
-    */
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    /*
-    if(trueFlag >= 5)
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    }
-    */
+
     return false; // aka never end
   }
   // Called once after isFinished returns true

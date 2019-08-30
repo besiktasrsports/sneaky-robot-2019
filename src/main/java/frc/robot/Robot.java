@@ -31,6 +31,7 @@ public class Robot extends TimedRobot {
   public static Arm m_arm;
   public static Climber m_climber;
   public static ClimbDriver m_climbDriver;
+  public static CameraServo m_cameraServo;
   public static Intake m_intake;
   public static Vision m_vision;
   // Construsct Sensors
@@ -51,6 +52,7 @@ public class Robot extends TimedRobot {
     m_climber = new Climber();
     m_intake = new Intake();
     m_climbDriver = new ClimbDriver();
+    m_cameraServo = new CameraServo();
     m_encoder = new Encoder();
     m_vision = new Vision();
     autoCG = new Autonomous();

@@ -10,12 +10,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class JoystickRotateArm extends Command {
-  public JoystickRotateArm() {
+public class TurnServo extends Command {
+  public TurnServo() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_arm);
+    requires(Robot.m_cameraServo);
   }
+
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
@@ -24,14 +25,8 @@ public class JoystickRotateArm extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_arm.rotateArm(Robot.m_oi.xbox.getRawAxis(3));
-    if(Robot.m_arm.readArmEncoder() < 90){
-      Robot.m_cameraServo.setServoAngle(180);
-    }
-    else{
-      Robot.m_cameraServo.setServoAngle(0);
-
-    }
+    Robot.m_cameraServo.setServoAngle(0);
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
