@@ -12,9 +12,9 @@ import frc.robot.Robot;
 
 public class climbDriveForward extends Command {
   public climbDriveForward() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
     requires(Robot.m_climbDriver);
+    // Check drivetrain requirement
+    requires(Robot.m_driveTrain);
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +25,11 @@ public class climbDriveForward extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_climbDriver.climbDriveForward(1.0);
+    Robot.m_climbDriver.climbDriveForward(0.5);
+    // Might change these
+    Robot.m_driveTrain.leftSide.set(0.3);
+    Robot.m_driveTrain.rightSide.set(0.3);
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -38,6 +42,8 @@ public class climbDriveForward extends Command {
   @Override
   protected void end() {
     Robot.m_climbDriver.climbDriveForward(0);
+    Robot.m_driveTrain.leftSide.set(0);
+    Robot.m_driveTrain.rightSide.set(0);
   }
 
   // Called when another command which requires one or more of the same

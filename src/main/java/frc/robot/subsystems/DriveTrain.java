@@ -88,11 +88,11 @@ public class DriveTrain extends Subsystem {
   public void driveBase() {
     if(driveTrainMode == false){
       // Cheesy Drive
-      differentialDrive41.arcadeDrive(Robot.m_oi.xbox.getY(),-Robot.m_oi.xbox.getX());
+      differentialDrive41.arcadeDrive(Robot.m_oi.xbox.getY()/2,-Robot.m_oi.xbox.getX()/2);
     }
     else{
       // Arcade Drive
-      differentialDrive41.arcadeDrive(Robot.m_oi.xbox.getY(),-Robot.m_oi.xbox.getX());
+      differentialDrive41.arcadeDrive(Robot.m_oi.xbox.getY()/2,-Robot.m_oi.xbox.getX()/2);
     }
     
     
