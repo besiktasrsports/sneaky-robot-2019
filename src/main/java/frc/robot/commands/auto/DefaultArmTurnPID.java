@@ -41,7 +41,7 @@ public class DefaultArmTurnPID extends Command {
     currentAngle = Robot.m_arm.readArmEncoder();
     targetAngle = Robot.m_arm.targetAngle;
 
-    if(targetAngle == 500.0)  // Do Js control
+    if(targetAngle == 10000.0)  // Do Js control
     {
       Robot.m_arm.rotateArm(Robot.m_oi.xbox.getRawAxis(3));
     }

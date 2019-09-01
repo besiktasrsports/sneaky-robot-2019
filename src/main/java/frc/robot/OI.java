@@ -63,6 +63,9 @@ public class OI {
     toggleCompressorButton = new JoystickButton(xbox, 10);
     driveTrainModeChangerButton = new JoystickButton(xbox, 11);
     cameraServoTestButton = new JoystickButton(xbox, 1);
+    takeObjectButton = new JoystickButton(xbox, 3);
+    releaseObjectButton = new JoystickButton(xbox, 4);
+    
     
     // Button Panel - Arm
     frontFloorCargoIntakeButton = new JoystickButton(buttonPanel, 1);
@@ -75,9 +78,7 @@ public class OI {
     rearHatchButton = new JoystickButton(buttonPanel, 8);
     controlArmJs = new JoystickButton(buttonPanel, 9);
     // Button Panel - Intake and Climb
-    takeObjectButton = new JoystickButton(buttonPanel, 10);
-    releaseObjectButton = new JoystickButton(buttonPanel, 11);
-    intakeStateChangerButton = new JoystickButton(buttonPanel, 12);
+    intakeStateChangerButton = new JoystickButton(buttonPanel, 10);
     rotateArmForwardButton  = new JoystickButton(buttonPanel, 13);
     rotateArmBackwardButton  = new JoystickButton(buttonPanel, 14);
     climbMoveForwardButton = new JoystickButton(buttonPanel, 15);
@@ -107,14 +108,14 @@ public class OI {
     */
     armToStartPositionButton.whileHeld(new ChangeArmTargetAngle(96.0));
     frontCargoToCargoShipButton.whileHeld(new ChangeArmTargetAngle(120.0));
-    frontHatchButton.whileHeld(new ChangeArmTargetAngle(195.0));
+    frontHatchButton.whileHeld(new ChangeArmTargetAngle(185.0));
     frontFloorCargoIntakeButton.whileHeld(new ChangeArmTargetAngle(210.0));
     frontRocketCargoButton.whileHeld(new ChangeArmTargetAngle(170.0));
     // Arm - Rear
     rearCargoToCargoShipButton.whileHeld(new ChangeArmTargetAngle(60.0));
     rearRocketCargoButton.whileHeld(new ChangeArmTargetAngle(10.0));
     rearHatchButton.whileHeld(new ChangeArmTargetAngle(0.0));
-    controlArmJs.whileHeld(new ChangeArmTargetAngle(500.0));
+    controlArmJs.whileHeld(new ChangeArmTargetAngle(10000.0));
   }
 
   public Joystick getXbox() {

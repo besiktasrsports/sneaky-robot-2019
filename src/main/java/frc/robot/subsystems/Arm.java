@@ -29,7 +29,7 @@ public class Arm extends Subsystem {
   private final WPI_VictorSPX armMotor2;
   private SpeedControllerGroup armSpeedControllerGroup;
   private final double kEncoderPositionToAngle = 13164.0; // 13312
-  private final double kEncoderPositionAt0 = -2758022.0;
+  private final double kEncoderPositionAt0 = -1188295.0;
 
 
   public Arm()
