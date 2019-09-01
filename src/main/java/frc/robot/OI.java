@@ -61,7 +61,7 @@ public class OI {
     climberPushButton = new JoystickButton(xbox, 7);
     climberReleaseButton = new JoystickButton(xbox, 8);
     toggleCompressorButton = new JoystickButton(xbox, 10);
-    driveTrainModeChangerButton = new JoystickButton(xbox, 11);
+    driveTrainModeChangerButton = new JoystickButton(xbox, 6);
     cameraServoTestButton = new JoystickButton(xbox, 1);
     takeObjectButton = new JoystickButton(xbox, 3);
     releaseObjectButton = new JoystickButton(xbox, 4);
@@ -83,7 +83,7 @@ public class OI {
     rotateArmBackwardButton  = new JoystickButton(buttonPanel, 14);
     climbMoveForwardButton = new JoystickButton(buttonPanel, 15);
 
-    //driveTrainModeChangerButton.whileHeld(new DriveTrainModeChanger());
+    driveTrainModeChangerButton.whileHeld(new DriveTrainModeChanger());
     toggleCompressorButton.whileHeld(new ToggleCompressor());
     takeObjectButton.whileHeld(new TakeObject());
     releaseObjectButton.whileHeld(new ReleaseObject());

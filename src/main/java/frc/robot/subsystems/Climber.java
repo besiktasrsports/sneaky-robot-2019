@@ -9,6 +9,8 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -18,6 +20,9 @@ public class Climber extends Subsystem {
 
   private WPI_TalonSRX climbMotor;
   private WPI_TalonSRX climbMotor2;
+  private DigitalInput climberLimitSw;
+  public boolean limitSwStatus;
+  public Counter climbCounter;
   
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -25,6 +30,9 @@ public class Climber extends Subsystem {
 
     climbMotor = new WPI_TalonSRX(10);
     climbMotor2 = new WPI_TalonSRX(18);
+    climberLimitSw = new DigitalInput(9);
+    climbCounter = new Counter(climberLimitSw);
+    
     
 
   }
@@ -34,10 +42,34 @@ public class Climber extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
+  public void periodic(){
+
+    
+
+  }
+
   public void climbDrive(double speed){
-    climbMotor.set(speed);
-    climbMotor2.set(-speed);
+   
+    if(speed >= 0){
+      if(limitSwStatus == true){
+        climbMotor.set(0);
+        climbMotor2.set(0);
+      }
+      else{
+        climbMotor.set(speed);
+        climbMotor2.set(-speed);
+      }
+
+    }
+    else{
+      climbMotor.set(speed);
+      climbMotor2.set(-speed);
+    }
+   
+    }
+
+    
   }
 
   
-}
+

@@ -24,7 +24,7 @@ public class Arm extends Subsystem {
 
   public String armState;
   // We can also increment the targetAngle slowly as well
-  public double targetAngle = 500.0; // We can make this its current angle as well
+  public double targetAngle = 10000.0; // We can make this its current angle as well
   private final WPI_TalonSRX  armMotor1;
   private final WPI_VictorSPX armMotor2;
   private SpeedControllerGroup armSpeedControllerGroup;

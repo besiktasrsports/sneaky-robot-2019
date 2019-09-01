@@ -61,6 +61,7 @@ public class Robot extends TimedRobot {
     CameraServer.getInstance().startAutomaticCapture();
     m_intake.compressor.setClosedLoopControl(false);
     SmartDashboard.putData("Auto mode", m_chooser);
+    
   }
 
   /**
@@ -82,6 +83,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+   
   }
 
   @Override
@@ -102,10 +104,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    Scheduler.getInstance().removeAll();
-   // Robot.m_driveTrain.driveTrainFrontLeftMotor.setSelectedSensorPosition(0);
-    //autoCG.addSequential(new relayTest());
-    autoCG.start();
+   Scheduler.getInstance().run();
+
+   m_climber.climbCounter.reset();
     
   }
 
@@ -123,6 +124,7 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    m_climber.climbCounter.reset();
     
   }
 
@@ -134,6 +136,19 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
    // m_encoder.printEncoderVelocity();
    m_arm.readArmEncoder(); // Assign this to a variables
+   if(m_climber.climbCounter.get() != 0 ){
+    m_climber.limitSwStatus = true;
+    
+    
+    
+  }
+  else{
+    m_climber.limitSwStatus = false;
+    
+   
+  }
+
+  System.out.println("Limit Switch Status : "+m_climber.limitSwStatus);
 
     
 
