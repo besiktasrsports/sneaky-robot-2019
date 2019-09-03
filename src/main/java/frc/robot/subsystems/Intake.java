@@ -10,6 +10,8 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -28,6 +30,9 @@ public class Intake extends Subsystem {
   private final WPI_VictorSPX leftIntakeMotor;
   private final WPI_VictorSPX rightIntakeMotor;
   private final DoubleSolenoid stateChangeCyclinder;
+  private DigitalInput intakeLimitSw;
+  public Counter intakeLimitSwCounter;
+  public boolean intakeLimitSwStatus;
   public final Compressor compressor;
 
   public Intake(){
@@ -37,11 +42,18 @@ public class Intake extends Subsystem {
     rightIntakeMotor.setInverted(true);
     compressor = new Compressor(0);
     stateChangeCyclinder = new DoubleSolenoid(1,7);
+    intakeLimitSw = new DigitalInput(7);
+    intakeLimitSwCounter = new Counter(intakeLimitSw);
+
   }
   @Override
   public void initDefaultCommand() {
     setDefaultCommand(new freeTurn());
    
+  }
+
+  public void gripCargo(){
+    stateChangeCyclinder.set(Value.kForward);
   }
 
   public void intakeStateChanger(String _state){
@@ -65,6 +77,8 @@ public class Intake extends Subsystem {
       stateChangeCyclinder.set(Value.kOff);
       System.err.println("You have entered an undefined state.");
     }
+
+  
 
   }
 

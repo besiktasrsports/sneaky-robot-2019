@@ -92,7 +92,7 @@ public class DriveTrain extends Subsystem {
     }
     else{
       // Arcade Drive
-      differentialDrive41.arcadeDrive(Robot.m_oi.xbox.getY()/2,-Robot.m_oi.xbox.getX()/2);
+      differentialDrive41.arcadeDrive(-Robot.m_oi.xbox.getY(),-Robot.m_oi.xbox.getX()/2);
     }
     
     

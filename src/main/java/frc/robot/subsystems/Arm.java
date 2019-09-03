@@ -11,6 +11,8 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.JoystickRotateArm;
@@ -28,8 +30,11 @@ public class Arm extends Subsystem {
   private final WPI_TalonSRX  armMotor1;
   private final WPI_VictorSPX armMotor2;
   private SpeedControllerGroup armSpeedControllerGroup;
+  private DigitalInput calibrationLimitSw;
+  public boolean calibrationSwStatus;
+  public Counter calibrationSwCounter;
   private final double kEncoderPositionToAngle = 13164.0; // 13312
-  private final double kEncoderPositionAt0 = -1188295.0;
+  private double kEncoderPositionAt0 = -1249274.0;
 
 
   public Arm()
@@ -38,6 +43,8 @@ public class Arm extends Subsystem {
     armMotor1 = new WPI_TalonSRX(11);
     armMotor2 = new WPI_VictorSPX(20);
     armSpeedControllerGroup = new SpeedControllerGroup(armMotor1, armMotor2);
+    calibrationLimitSw = new DigitalInput(8);
+    calibrationSwCounter = new Counter(calibrationLimitSw);
     // Invert arm motor
     // armMotor.setInverted(true);
     // Assign Encoder to Motor
@@ -64,6 +71,12 @@ public class Arm extends Subsystem {
     return armAngle;
   }
 
+  public double getRawArmPosition(){
+
+    double rawArmPosition = armMotor1.getSelectedSensorPosition();
+    return rawArmPosition;
+  }
+
   public void rotateArm(double speed){
     armSpeedControllerGroup.set(speed);
   }
@@ -71,6 +84,16 @@ public class Arm extends Subsystem {
   public void stopArm()
   {
     armSpeedControllerGroup.set(0);
+  }
+
+  public void calibrateArm(){
+
+    double frontCargoPickupAngle = 220;
+    double currentRawData = getRawArmPosition();
+    double calibratedPositionAt0 = currentRawData - (13164.0*frontCargoPickupAngle);
+    kEncoderPositionAt0 = calibratedPositionAt0;
+    System.out.println("calibrated position : "+calibratedPositionAt0);
+    System.out.println("zero position : "+kEncoderPositionAt0);
   }
 
 }

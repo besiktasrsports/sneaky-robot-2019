@@ -17,9 +17,9 @@ public class DefaultArmTurnPID extends Command {
   double currentError, errorDiff;
   double prevError = 0;
   double totalError = 0;
-  double kP = 0.06;
+  double kP = 0.06; // 0.06
   double kI = 0;// 0.00003;
-  double kD = 0.16;
+  double kD = 0.16; // 0.16
   double kPowerChange = 0.05;
   double powerAccuracy ;
   double targetPower;
@@ -43,8 +43,14 @@ public class DefaultArmTurnPID extends Command {
 
     if(targetAngle == 10000.0)  // Do Js control
     {
-      Robot.m_arm.rotateArm(Robot.m_oi.xbox.getRawAxis(3));
+      if(Robot.m_oi.xbox.getRawAxis(5) < 0.15 && Robot.m_oi.xbox.getRawAxis(5) > -0.15 ){
+        Robot.m_arm.rotateArm(0);
+      }
+      else{
+      Robot.m_arm.rotateArm(Robot.m_oi.xbox.getRawAxis(5));
+      }   
     }
+
     else
     {
       currentError = currentAngle - targetAngle;
@@ -78,11 +84,15 @@ public class DefaultArmTurnPID extends Command {
     }
     if(Robot.m_arm.readArmEncoder() < 90)
     {
-      Robot.m_cameraServo.setServoAngle(180);
+      Robot.m_cameraServo.setServoAngle(0);
     }
     else
     {
-      Robot.m_cameraServo.setServoAngle(0);
+      Robot.m_cameraServo.setServoAngle(180);
+    }
+
+    if(Robot.m_arm.calibrationSwStatus == true){
+      Robot.m_arm.calibrateArm();
     }
 
   }

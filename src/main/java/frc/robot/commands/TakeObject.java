@@ -26,10 +26,10 @@ public class TakeObject extends Command {
   @Override
   protected void execute() {
     if(Robot.m_intake.intakeState == "CARGO"){
-      Robot.m_intake.intakeDrive(-0.3);
+      Robot.m_intake.intakeDrive(-0.6);
     }
     else if(Robot.m_intake.intakeState == "HATCH"){
-      Robot.m_intake.intakeDrive(-0.3);
+      Robot.m_intake.intakeDrive(-0.6);
     }
   }
 

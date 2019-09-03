@@ -107,6 +107,7 @@ public class Robot extends TimedRobot {
    Scheduler.getInstance().run();
 
    m_climber.climbCounter.reset();
+   m_intake.intakeStateChanger("HATCH");
     
   }
 
@@ -124,7 +125,9 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    m_intake.intakeStateChanger("HATCH");
     m_climber.climbCounter.reset();
+    m_arm.calibrationSwCounter.reset();
     
   }
 
@@ -148,8 +151,26 @@ public class Robot extends TimedRobot {
    
   }
 
-  System.out.println("Limit Switch Status : "+m_climber.limitSwStatus);
+  if(m_arm.calibrationSwCounter.get() != 0){
+    m_arm.calibrationSwStatus = true;
+    m_arm.calibrationSwCounter.reset();
+    
+  }
+  else{
+    m_arm.calibrationSwStatus = false;
 
+    if(m_intake.intakeLimitSwCounter.get() != 0){
+      m_intake.intakeLimitSwStatus = true;
+      m_intake.intakeLimitSwCounter.reset();
+    }
+    else{
+      m_intake.intakeLimitSwStatus = false;
+    }
+    //System.out.println("Intake Limit Switch Status : "+m_intake.intakeLimitSwStatus);
+  }
+
+  //System.out.println("Climber Limit Switch Status : "+m_climber.limitSwStatus);
+  //System.out.println("Arm Calibration Limit Switch Status : "+m_arm.calibrationSwStatus);
     
 
     

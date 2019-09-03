@@ -8,36 +8,24 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
 
-public class freeTurn extends Command {
-  public freeTurn() {
+
+public class testCommand extends Command {
+  public testCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_intake);
+   
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
-
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.m_intake.intakeState == "HATCH"){
-      Robot.m_intake.intakeDrive(-0.1);
-    }
-    else{
-      Robot.m_intake.intakeDrive(0);
-      if(Robot.m_intake.intakeLimitSwStatus == true){
-        Robot.m_intake.gripCargo();
-      }
-    }
-    
-
+    System.out.println("im in the command rn");
   }
 
   // Make this return true when this Command no longer needs to run execute()

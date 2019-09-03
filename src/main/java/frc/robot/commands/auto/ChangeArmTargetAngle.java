@@ -21,7 +21,19 @@ public class ChangeArmTargetAngle extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_arm.targetAngle = _targetAngle;
+    if(_targetAngle == 0.0 && Robot.m_intake.intakeState == "HATCH"){
+      //System.out.println("Intake state is hatch and target is 0, i can pass");
+      Robot.m_arm.targetAngle = 0.0;
+    }
+    else if(_targetAngle == 0.0 && Robot.m_intake.intakeState != "HATCH"){
+      //System.out.println("Intake state is not hatch and target is 0, i can't pass");
+      Robot.m_arm.targetAngle = Robot.m_arm.targetAngle;
+    }
+    else if(_targetAngle != 0.0){
+      //System.out.println("Target is not 0, i can pass");
+      Robot.m_arm.targetAngle = _targetAngle;
+    }
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
