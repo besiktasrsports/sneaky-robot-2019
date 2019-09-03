@@ -10,7 +10,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.*;
-import frc.robot.commands.auto.ArmTurnPID;
 import frc.robot.commands.auto.ChangeArmTargetAngle;
 
 
@@ -43,6 +42,7 @@ public class OI {
   private JoystickButton rearRocketCargoButton;
   private JoystickButton rearHatchButton;
   private JoystickButton rearCargoToCargoShipButton;
+  private JoystickButton rearFloorCargoIntakeButton;
   private JoystickButton controlArmJs;
   // Climber
   private JoystickButton climberPushButton;
@@ -76,7 +76,8 @@ public class OI {
     rearCargoToCargoShipButton = new JoystickButton(buttonPanel, 6);
     rearRocketCargoButton = new JoystickButton(buttonPanel, 7);
     rearHatchButton = new JoystickButton(buttonPanel, 8);
-    controlArmJs = new JoystickButton(buttonPanel, 9);
+    rearFloorCargoIntakeButton = new JoystickButton(buttonPanel, 9);
+    controlArmJs = new JoystickButton(buttonPanel, 11);
     // Button Panel - Intake and Climb
     intakeStateChangerButton = new JoystickButton(buttonPanel, 10);
     rotateArmForwardButton  = new JoystickButton(buttonPanel, 13);
@@ -94,29 +95,17 @@ public class OI {
     climberReleaseButton.whileHeld(new climbRelease());
     climbMoveForwardButton.whileHeld(new climbDriveForward());
     cameraServoTestButton.whileHeld(new TurnServo());
-    /*
-    // Arm - Front
-    armToStartPositionButton.whileHeld(new ArmTurnPID(96.0));
-    frontCargoToCargoShipButton.whileHeld(new ArmTurnPID(120.0));
-    frontHatchButton.whileHeld(new ArmTurnPID(188.0));
-    frontFloorCargoIntakeButton.whileHeld(new ArmTurnPID(214.0));
-    frontRocketCargoButton.whileHeld(new ArmTurnPID(170.0));
-    // Arm - Rear
-    rearCargoToCargoShipButton.whileHeld(new ArmTurnPID(60.0));
-    rearRocketCargoButton.whileHeld(new ArmTurnPID(10.0));
-    rearHatchButton.whileHeld(new ArmTurnPID(0.0));
-    */
-
     // Arm - Front
     armToStartPositionButton.whileHeld(new ChangeArmTargetAngle(96.0));
     frontCargoToCargoShipButton.whileHeld(new ChangeArmTargetAngle(120.0));
     frontHatchButton.whileHeld(new ChangeArmTargetAngle(192.0));
-    frontFloorCargoIntakeButton.whileHeld(new ChangeArmTargetAngle(220.0));
+    frontFloorCargoIntakeButton.whileHeld(new ChangeArmTargetAngle(218.0));
     frontRocketCargoButton.whileHeld(new ChangeArmTargetAngle(170.0));
     // Arm - Rear
     rearCargoToCargoShipButton.whileHeld(new ChangeArmTargetAngle(75.0));
-    //rearRocketCargoButton.whileHeld(new ChangeArmTargetAngle(10.0));
+    rearRocketCargoButton.whileHeld(new ChangeArmTargetAngle(22.0));
     rearHatchButton.whileHeld(new ChangeArmTargetAngle(0.0));
+    rearFloorCargoIntakeButton.whileHeld(new ChangeArmTargetAngle(-27.0));
     
     controlArmJs.whileHeld(new ChangeArmTargetAngle(10000.0));
   }
@@ -129,127 +118,3 @@ public class OI {
     return buttonPanel;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  

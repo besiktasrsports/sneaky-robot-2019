@@ -91,6 +91,8 @@ public class DefaultArmTurnPID extends Command {
       Robot.m_cameraServo.setServoAngle(180);
     }
 
+    // System.out.println(Robot.m_arm.calibrationSwStatus);
+
     if(Robot.m_arm.calibrationSwStatus == true){
       Robot.m_arm.calibrateArm();
     }

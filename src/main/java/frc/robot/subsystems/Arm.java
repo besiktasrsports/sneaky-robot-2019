@@ -34,7 +34,7 @@ public class Arm extends Subsystem {
   public boolean calibrationSwStatus;
   public Counter calibrationSwCounter;
   private final double kEncoderPositionToAngle = 13164.0; // 13312
-  private double kEncoderPositionAt0 = -1249274.0;
+  private double kEncoderPositionAt0 = -2423789.0;
 
 
   public Arm()
