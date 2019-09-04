@@ -34,7 +34,7 @@ public class Arm extends Subsystem {
   public boolean calibrationSwStatus;
   public Counter calibrationSwCounter;
   private final double kEncoderPositionToAngle = 13164.0; // 13312
-  private double kEncoderPositionAt0 = -2423789.0;
+  private double kEncoderPositionAt0 = -793726.0;
 
 
   public Arm()
@@ -87,7 +87,7 @@ public class Arm extends Subsystem {
   }
 
   public void calibrateArm(){
-
+    stopArm();
     double frontCargoPickupAngle = 220;
     double currentRawData = getRawArmPosition();
     double calibratedPositionAt0 = currentRawData - (13164.0*frontCargoPickupAngle);

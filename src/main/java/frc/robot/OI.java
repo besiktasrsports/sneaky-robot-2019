@@ -100,7 +100,7 @@ public class OI {
     frontCargoToCargoShipButton.whileHeld(new ChangeArmTargetAngle(120.0));
     frontHatchButton.whileHeld(new ChangeArmTargetAngle(192.0));
     frontFloorCargoIntakeButton.whileHeld(new ChangeArmTargetAngle(218.0));
-    frontRocketCargoButton.whileHeld(new ChangeArmTargetAngle(170.0));
+    frontRocketCargoButton.whileHeld(new ChangeArmTargetAngle(152.0));
     // Arm - Rear
     rearCargoToCargoShipButton.whileHeld(new ChangeArmTargetAngle(75.0));
     rearRocketCargoButton.whileHeld(new ChangeArmTargetAngle(22.0));

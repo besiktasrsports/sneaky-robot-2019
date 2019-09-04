@@ -54,6 +54,9 @@ public class Intake extends Subsystem {
 
   public void gripCargo(){
     stateChangeCyclinder.set(Value.kForward);
+    leftIntakeMotor.set(0.1);
+    rightIntakeMotor.set(-0.1);
+
   }
 
   public void intakeStateChanger(String _state){
