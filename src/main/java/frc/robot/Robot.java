@@ -108,6 +108,9 @@ public class Robot extends TimedRobot {
 
    m_climber.climbCounter.reset();
    m_intake.intakeStateChanger("HATCH");
+   m_arm.calibrationSwCounter.reset();
+   m_arm.frontFloorCargoCounter.reset();
+   m_arm.rearFloorCargoCounter.reset();
     
   }
 
@@ -125,9 +128,14 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    m_intake.intakeStateChanger("HATCH");
+
+    // no need to change to hatch state
+    // m_intake.intakeStateChanger("HATCH");
     m_climber.climbCounter.reset();
     m_arm.calibrationSwCounter.reset();
+    // Erase those
+    m_arm.frontFloorCargoCounter.reset();
+    m_arm.rearFloorCargoCounter.reset();
     
   }
 

@@ -41,14 +41,42 @@ public class DefaultArmTurnPID extends Command {
     currentAngle = Robot.m_arm.readArmEncoder();
     targetAngle = Robot.m_arm.targetAngle;
 
+        
+    if(Robot.m_arm.frontFloorCargoLimitSw.get() == true)
+    {
+      Robot.m_arm.calibrateArm(213.5);
+      // targetAngle = 213.5;
+    }
+    else if(Robot.m_arm.rearFloorCargoLimitSw.get() == true)
+    {
+      Robot.m_arm.calibrateArm(-19.5);
+      // targetAngle = -19.5;
+    }
+
+
     if(targetAngle == 10000.0)  // Do Js control
     {
+      System.out.println("Front floor cargo sw: " + Robot.m_arm.frontFloorCargoLimitSw.get());
+      System.out.println("Rear floor cargo sw: " + Robot.m_arm.rearFloorCargoLimitSw.get());
       if(Robot.m_oi.xbox.getRawAxis(5) < 0.15 && Robot.m_oi.xbox.getRawAxis(5) > -0.15 ){
         Robot.m_arm.rotateArm(0);
       }
-      else{
-      Robot.m_arm.rotateArm(Robot.m_oi.xbox.getRawAxis(5));
-      }   
+      else
+      {
+        double armSpeed = Robot.m_oi.xbox.getRawAxis(5);
+        
+        if(Robot.m_arm.frontFloorCargoLimitSw.get() == true && armSpeed < -0.1) // if we push the limit sw in front and still try to rotate the arm
+        {
+          armSpeed = 0;
+          // reset switch
+        }
+        else if(Robot.m_arm.rearFloorCargoLimitSw.get() == true && armSpeed > 0.1 )  // if we push the limit sw in rear and still try to rotate the arm
+        {
+          armSpeed = 0;
+          // reset switch
+        }
+        Robot.m_arm.rotateArm(armSpeed);
+      }
     }
 
     else
@@ -74,11 +102,20 @@ public class DefaultArmTurnPID extends Command {
 
       power = targetPower;
 
-      
-
       // Apply power to the motor
+              
+      if(Robot.m_arm.frontFloorCargoLimitSw.get() == true && power < 0) // if we push the limit sw in front and still try to rotate the arm
+      {
+        power = 0;
+        // reset switch
+      }
+      else if(Robot.m_arm.rearFloorCargoLimitSw.get() == true && power > 0 )  // if we push the limit sw in rear and still try to rotate the arm
+      {
+        power = 0;
+        // reset switch
+      }
       Robot.m_arm.rotateArm(power);
-      System.out.println("Arm power to apply: " + power);
+      // System.out.println("Arm power to apply: " + power);
       // Get previous error
       prevError = currentError;
     }
@@ -91,11 +128,17 @@ public class DefaultArmTurnPID extends Command {
       Robot.m_cameraServo.setServoAngle(180);
     }
 
-    // System.out.println(Robot.m_arm.calibrationSwStatus);
+    // Front cargo encoder pos: 1195472, 23.5 degree
 
-    if(Robot.m_arm.calibrationSwStatus == true){
-      Robot.m_arm.calibrateArm();
-    }
+    // Rear cargo encoder pos: -2096493, 19.5 degree
+    // 287862
+    // Total: 3291965
+
+    // Total Swing angle: 223 degree
+    // double kEncoderPositionToAngle = 14762.17;
+
+    // System.out.println(Robot.m_arm.calibrationSwStatus);
+    
 
   }
 

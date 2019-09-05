@@ -30,11 +30,21 @@ public class Arm extends Subsystem {
   private final WPI_TalonSRX  armMotor1;
   private final WPI_VictorSPX armMotor2;
   private SpeedControllerGroup armSpeedControllerGroup;
+
   private DigitalInput calibrationLimitSw;
   public boolean calibrationSwStatus;
   public Counter calibrationSwCounter;
-  private final double kEncoderPositionToAngle = 13164.0; // 13312
-  private double kEncoderPositionAt0 = -793726.0;
+
+  public DigitalInput frontFloorCargoLimitSw;
+  // public boolean frontFloorCargoStatus;
+  public Counter frontFloorCargoCounter;
+
+  public DigitalInput rearFloorCargoLimitSw;
+  // public boolean rearFloorCargoStatus;
+  public Counter rearFloorCargoCounter;
+
+  private final double kEncoderPositionToAngle = 14762.17; // 13164.0; // 13312
+  private double kEncoderPositionAt0 = -1808630.0;
 
 
   public Arm()
@@ -45,6 +55,15 @@ public class Arm extends Subsystem {
     armSpeedControllerGroup = new SpeedControllerGroup(armMotor1, armMotor2);
     calibrationLimitSw = new DigitalInput(8);
     calibrationSwCounter = new Counter(calibrationLimitSw);
+
+    // Front limit sw
+    frontFloorCargoLimitSw = new DigitalInput(5);
+    frontFloorCargoCounter = new Counter(frontFloorCargoLimitSw);
+
+    // Rear limit sw
+    rearFloorCargoLimitSw = new DigitalInput(6);
+    rearFloorCargoCounter = new Counter(rearFloorCargoLimitSw);
+
     // Invert arm motor
     // armMotor.setInverted(true);
     // Assign Encoder to Motor
@@ -62,11 +81,11 @@ public class Arm extends Subsystem {
   public double readArmEncoder()
   {
     double rawArmPosition = armMotor1.getSelectedSensorPosition();
-    System.out.println("Raw Arm position:" + rawArmPosition);
     // System.out.println("Arm position:" + rawArmPosition);
     double armPosition = (kEncoderPositionAt0 - rawArmPosition);
     // System.out.println("Arm position:" + armPosition);
     double armAngle = -armPosition/kEncoderPositionToAngle;
+    System.out.println("Raw Arm position:" + rawArmPosition);
     System.out.println("Arm angle:" + armAngle);
     return armAngle;
   }
@@ -86,11 +105,12 @@ public class Arm extends Subsystem {
     armSpeedControllerGroup.set(0);
   }
 
-  public void calibrateArm(){
+  public void calibrateArm(double _angle)
+  {
     stopArm();
-    double frontCargoPickupAngle = 220;
+    double frontCargoPickupAngle = _angle;
     double currentRawData = getRawArmPosition();
-    double calibratedPositionAt0 = currentRawData - (13164.0*frontCargoPickupAngle);
+    double calibratedPositionAt0 = currentRawData - (kEncoderPositionToAngle*frontCargoPickupAngle);
     kEncoderPositionAt0 = calibratedPositionAt0;
     System.out.println("calibrated position : "+calibratedPositionAt0);
     System.out.println("zero position : "+kEncoderPositionAt0);

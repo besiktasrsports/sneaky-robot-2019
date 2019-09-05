@@ -41,7 +41,7 @@ public class Intake extends Subsystem {
     rightIntakeMotor = new WPI_VictorSPX(17);
     rightIntakeMotor.setInverted(true);
     compressor = new Compressor(0);
-    stateChangeCyclinder = new DoubleSolenoid(1,7);
+    stateChangeCyclinder = new DoubleSolenoid(6,7);
     intakeLimitSw = new DigitalInput(7);
     intakeLimitSwCounter = new Counter(intakeLimitSw);
 
@@ -57,6 +57,16 @@ public class Intake extends Subsystem {
     leftIntakeMotor.set(0.1);
     rightIntakeMotor.set(-0.1);
 
+  }
+
+  public void closeGripper()
+  {
+    stateChangeCyclinder.set(Value.kForward);
+  }
+
+  public void openGripper()
+  {
+    stateChangeCyclinder.set(Value.kReverse);
   }
 
   public void intakeStateChanger(String _state){
@@ -78,7 +88,7 @@ public class Intake extends Subsystem {
     }
     else{
       stateChangeCyclinder.set(Value.kOff);
-      System.err.println("You have entered an undefined state.");
+      // System.err.println("You have entered an undefined state.");
     }
 
   
@@ -106,7 +116,7 @@ public class Intake extends Subsystem {
     else{
       leftIntakeMotor.set(0*speed);
       rightIntakeMotor.set(0*speed);
-      System.err.println("You have entered an undefined state.");
+      // System.err.println("You have entered an undefined state.");
     }
   }
 
