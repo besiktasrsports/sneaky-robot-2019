@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -92,7 +94,8 @@ public class DriveTrain extends Subsystem {
     }
     else{
       // Arcade Drive
-      differentialDrive41.arcadeDrive(-Robot.m_oi.xbox.getY(),-Robot.m_oi.xbox.getX()/2);
+      differentialDrive41.arcadeDrive(-Robot.m_oi.xbox.getY(),-Robot.m_oi.xbox.getX());
+      
     }
     
     
