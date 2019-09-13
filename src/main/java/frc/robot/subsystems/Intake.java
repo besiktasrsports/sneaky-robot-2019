@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
 import frc.robot.commands.freeTurn;
 
 
@@ -30,7 +31,7 @@ public class Intake extends Subsystem {
   private final WPI_VictorSPX leftIntakeMotor;
   private final WPI_VictorSPX rightIntakeMotor;
   private final DoubleSolenoid stateChangeCyclinder;
-  private DigitalInput intakeLimitSw;
+  public DigitalInput intakeLimitSw;
   public Counter intakeLimitSwCounter;
   public boolean intakeLimitSwStatus;
   public final Compressor compressor;
@@ -106,6 +107,11 @@ public class Intake extends Subsystem {
     else if(intakeState == "CARGO"){
       leftIntakeMotor.set(-speed);
       rightIntakeMotor.set(speed);
+      double cargoHoldSpeed = 0.1;
+      System.out.println(intakeLimitSw.get());
+      leftIntakeMotor.set(-speed+cargoHoldSpeed);
+      rightIntakeMotor.set(speed-cargoHoldSpeed);
+      
 
     }
     else if(intakeState == "FREE"){

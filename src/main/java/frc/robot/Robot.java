@@ -74,6 +74,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    // System.out.println(m_intake.intakeLimitSw.get());
   }
 
   /**
@@ -107,7 +108,7 @@ public class Robot extends TimedRobot {
    Scheduler.getInstance().run();
 
    m_climber.climbCounter.reset();
-   m_intake.intakeStateChanger("HATCH");
+   m_intake.intakeStateChanger("CARGO");
    m_arm.calibrationSwCounter.reset();
    m_arm.frontFloorCargoCounter.reset();
    m_arm.rearFloorCargoCounter.reset();

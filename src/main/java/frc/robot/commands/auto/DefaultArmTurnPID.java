@@ -49,7 +49,7 @@ public class DefaultArmTurnPID extends Command {
     }
     else if(Robot.m_arm.rearFloorCargoLimitSw.get() == true)
     {
-      Robot.m_arm.calibrateArm(-12);
+      Robot.m_arm.calibrateArm(-9.3);
       // targetAngle = -19.5;
     }
 
