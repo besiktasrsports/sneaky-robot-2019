@@ -27,7 +27,7 @@ public class climbDriveForward extends Command {
   protected void execute() {
     Robot.m_climbDriver.climbDriveForward(0.5);
     // Might change these
-    Robot.m_driveTrain.leftSide.set(0.3);
+    Robot.m_driveTrain.leftSide.set(-0.3);
     Robot.m_driveTrain.rightSide.set(0.3);
 
   }

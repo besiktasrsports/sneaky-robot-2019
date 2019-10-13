@@ -25,7 +25,7 @@ public class Climber extends Subsystem {
   // here. Call these from Commands.
   public Climber(){
 
-    climbSolenoid = new DoubleSolenoid(3,4); //you might want to change this
+    climbSolenoid = new DoubleSolenoid(4 ,5); //you might want to change this
    
     
     

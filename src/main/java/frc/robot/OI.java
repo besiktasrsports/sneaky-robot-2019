@@ -72,6 +72,7 @@ public class OI {
     
     
     // Button Panel - Arm
+    /*
     frontFloorCargoIntakeButton = new JoystickButton(buttonPanel, 1);
     frontHatchButton = new JoystickButton(buttonPanel, 2);
     frontRocketCargoButton = new JoystickButton(buttonPanel, 3);
@@ -82,6 +83,7 @@ public class OI {
     rearHatchButton = new JoystickButton(buttonPanel, 8);
     rearFloorCargoIntakeButton = new JoystickButton(buttonPanel, 9);
     controlArmJs = new JoystickButton(buttonPanel, 11);
+    */
     // Button Panel - Intake and Climb
     intakeStateChangerButton = new JoystickButton(buttonPanel, 10);
     rotateArmForwardButton  = new JoystickButton(buttonPanel, 13);
@@ -103,6 +105,7 @@ public class OI {
     openGripperButton.whileHeld(new OpenGripper());
     
     // Arm - Front
+    /*
     armToStartPositionButton.whileHeld(new ChangeArmTargetAngle(96.0));
     frontCargoToCargoShipButton.whileHeld(new ChangeArmTargetAngle(133.0));
     frontHatchButton.whileHeld(new ChangeArmTargetAngle(183.0));
@@ -113,7 +116,7 @@ public class OI {
     rearRocketCargoButton.whileHeld(new ChangeArmTargetAngle(36.0));
     rearHatchButton.whileHeld(new ChangeArmTargetAngle(16.34));
     rearFloorCargoIntakeButton.whileHeld(new ChangeArmTargetAngle(-10.0));
-    
+    */
     controlArmJs.whileHeld(new ChangeArmTargetAngle(10000.0));
   }
 

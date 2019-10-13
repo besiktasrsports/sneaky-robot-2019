@@ -51,7 +51,7 @@ public class Arm extends Subsystem {
   {
     // Assign ID
     armMotor1 = new WPI_TalonSRX(11);
-    armMotor2 = new WPI_VictorSPX(20);
+    armMotor2 = new WPI_VictorSPX(19);
     armSpeedControllerGroup = new SpeedControllerGroup(armMotor1, armMotor2);
     calibrationLimitSw = new DigitalInput(8);
     calibrationSwCounter = new Counter(calibrationLimitSw);

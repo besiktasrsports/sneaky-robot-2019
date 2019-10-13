@@ -21,7 +21,7 @@ public class ClimbDriver extends Subsystem {
   private WPI_VictorSPX climbMovementMotor;
 
   public ClimbDriver(){
-    climbMovementMotor = new WPI_VictorSPX(19);
+    climbMovementMotor = new WPI_VictorSPX(14);
   }
   @Override
   public void initDefaultCommand() {

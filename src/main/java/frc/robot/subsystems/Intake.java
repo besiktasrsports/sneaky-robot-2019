@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Robot;
 import frc.robot.commands.freeTurn;
 
 
@@ -38,11 +37,11 @@ public class Intake extends Subsystem {
 
   public Intake(){
 
-    leftIntakeMotor = new WPI_VictorSPX(16);
-    rightIntakeMotor = new WPI_VictorSPX(17);
+    leftIntakeMotor = new WPI_VictorSPX(17);
+    rightIntakeMotor = new WPI_VictorSPX(15);
     rightIntakeMotor.setInverted(true);
     compressor = new Compressor(0);
-    stateChangeCyclinder = new DoubleSolenoid(6,7);
+    stateChangeCyclinder = new DoubleSolenoid(6, 7);
     intakeLimitSw = new DigitalInput(7);
     intakeLimitSwCounter = new Counter(intakeLimitSw);
 
