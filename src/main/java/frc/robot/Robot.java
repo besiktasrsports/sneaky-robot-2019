@@ -106,12 +106,12 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
    Scheduler.getInstance().run();
 
-   m_climber.climbCounter.reset();
    m_intake.intakeStateChanger("HATCH");
    m_arm.calibrationSwCounter.reset();
    m_arm.frontFloorCargoCounter.reset();
    m_arm.rearFloorCargoCounter.reset();
     
+   // retract cyclinders here ?
   }
 
   /**
@@ -131,7 +131,6 @@ public class Robot extends TimedRobot {
 
     // no need to change to hatch state
     // m_intake.intakeStateChanger("HATCH");
-    m_climber.climbCounter.reset();
     m_arm.calibrationSwCounter.reset();
     // Erase those
     m_arm.frontFloorCargoCounter.reset();
@@ -147,17 +146,6 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
    // m_encoder.printEncoderVelocity();
    m_arm.readArmEncoder(); // Assign this to a variables
-   if(m_climber.climbCounter.get() != 0 ){
-    m_climber.limitSwStatus = true;
-    
-    
-    
-  }
-  else{
-    m_climber.limitSwStatus = false;
-    
-   
-  }
 
   if(m_arm.calibrationSwCounter.get() != 0){
     m_arm.calibrationSwStatus = true;

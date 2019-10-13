@@ -25,7 +25,7 @@ public class climbPush extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_climber.climbDrive(0.65);
+    Robot.m_climber.pushCyclinders();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,7 +37,7 @@ public class climbPush extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_climber.climbDrive(0);
+    
   }
 
   // Called when another command which requires one or more of the same
