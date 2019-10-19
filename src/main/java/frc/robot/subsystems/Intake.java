@@ -75,11 +75,11 @@ public class Intake extends Subsystem {
 
     if(intakeState == "HATCH"){
 
-      stateChangeCyclinder.set(Value.kForward);
+      stateChangeCyclinder.set(Value.kReverse);
 
     }
     else if(intakeState == "CARGO"){
-      stateChangeCyclinder.set(Value.kReverse);
+      stateChangeCyclinder.set(Value.kForward);
 
     }
     else if(intakeState == "FREE"){

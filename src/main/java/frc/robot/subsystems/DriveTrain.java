@@ -26,8 +26,8 @@ public class DriveTrain extends Subsystem {
   // here. Call these from Commands.
   public WPI_TalonSRX driveTrainFrontLeftMotor;
   public WPI_TalonSRX driveTrainFrontRightMotor;
-  public WPI_TalonSRX driveTrainRearLeftMotor;
-  public WPI_TalonSRX driveTrainRearRightMotor;
+  public WPI_VictorSPX driveTrainRearLeftMotor;
+  public WPI_VictorSPX driveTrainRearRightMotor;
   public SpeedControllerGroup rightSide;
   public SpeedControllerGroup leftSide;
   public boolean driveTrainMode = false;
@@ -37,16 +37,16 @@ public class DriveTrain extends Subsystem {
 
   public DriveTrain(){
 
-    driveTrainFrontLeftMotor = new WPI_TalonSRX(13);
+    driveTrainFrontLeftMotor = new WPI_TalonSRX(12);
     driveTrainFrontLeftMotor.setInverted(true);
 
-    driveTrainFrontRightMotor = new WPI_TalonSRX(12);
+    driveTrainFrontRightMotor = new WPI_TalonSRX(13);
     driveTrainFrontRightMotor.setInverted(true);
 
-    driveTrainRearLeftMotor = new WPI_TalonSRX(18);
+    driveTrainRearLeftMotor = new WPI_VictorSPX(14);
     driveTrainRearLeftMotor.setInverted(true);
 
-    driveTrainRearRightMotor = new WPI_TalonSRX(10);
+    driveTrainRearRightMotor = new WPI_VictorSPX(15);
     driveTrainRearRightMotor.setInverted(true);
 
     rightSide = new SpeedControllerGroup(driveTrainFrontRightMotor, driveTrainRearRightMotor);
@@ -89,7 +89,8 @@ public class DriveTrain extends Subsystem {
 
   public void driveBase() {
     
-      differentialDrive41.arcadeDrive(Robot.m_oi.xbox.getY(),-Robot.m_oi.xbox.getX());
+      differentialDrive41.arcadeDrive(-Robot.m_oi.xbox.getY(),-Robot.m_oi.xbox.getX());
     
     
-}}
+}
+}

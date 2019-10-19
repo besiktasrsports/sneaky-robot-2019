@@ -26,7 +26,7 @@ public class ReleaseObject extends Command {
   @Override
   protected void execute() {
     if(Robot.m_intake.intakeState == "CARGO"){
-      Robot.m_intake.intakeDrive(0.6);
+      Robot.m_intake.intakeDrive(0.4);
     }
     else if(Robot.m_intake.intakeState == "HATCH"){
       Robot.m_intake.intakeDrive(1);

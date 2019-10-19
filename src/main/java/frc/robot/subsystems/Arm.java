@@ -43,8 +43,8 @@ public class Arm extends Subsystem {
   // public boolean rearFloorCargoStatus;
   public Counter rearFloorCargoCounter;
 
-  private final double kEncoderPositionToAngle = 14762.17; // 13164.0; // 13312
-  private double kEncoderPositionAt0 = -1808630.0;
+  private final double kEncoderPositionToAngle = 9.5; //TODO : change that and line 47 because of new encoder place
+  private double kEncoderPositionAt0 = 2800.0;
 
 
   public Arm()
@@ -67,7 +67,7 @@ public class Arm extends Subsystem {
     // Invert arm motor
     // armMotor.setInverted(true);
     // Assign Encoder to Motor
-    armMotor1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+    armMotor1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute); //TODO : Change this as srx mag encoder
 
   }
 
@@ -84,8 +84,10 @@ public class Arm extends Subsystem {
     // System.out.println("Arm position:" + rawArmPosition);
     double armPosition = (kEncoderPositionAt0 - rawArmPosition);
     // System.out.println("Arm position:" + armPosition);
+    //System.out.println("Pos at zero : " +kEncoderPositionAt0);
     double armAngle = -armPosition/kEncoderPositionToAngle;
-    System.out.println("Raw Arm position:" + rawArmPosition);
+    //System.out.println("Raw Arm position:" + rawArmPosition);
+    //System.out.println("Arm Position : " + armPosition);
     System.out.println("Arm angle:" + armAngle);
     return armAngle;
   }
@@ -108,12 +110,7 @@ public class Arm extends Subsystem {
   public void calibrateArm(double _angle)
   {
     stopArm();
-    double frontCargoPickupAngle = _angle;
-    double currentRawData = getRawArmPosition();
-    double calibratedPositionAt0 = currentRawData - (kEncoderPositionToAngle*frontCargoPickupAngle);
-    kEncoderPositionAt0 = calibratedPositionAt0;
-    System.out.println("calibrated position : "+calibratedPositionAt0);
-    System.out.println("zero position : "+kEncoderPositionAt0);
+    
   }
 
 }

@@ -25,10 +25,10 @@ public class climbDriveForward extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_climbDriver.climbDriveForward(0.5);
+    Robot.m_climbDriver.climbDriveForward(1);
     // Might change these
-    Robot.m_driveTrain.leftSide.set(-0.3);
-    Robot.m_driveTrain.rightSide.set(0.3);
+    //Robot.m_driveTrain.leftSide.set(-0.3);
+    //Robot.m_driveTrain.rightSide.set(0.3);
 
   }
 

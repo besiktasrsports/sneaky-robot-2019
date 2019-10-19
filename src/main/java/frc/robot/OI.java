@@ -72,22 +72,21 @@ public class OI {
     
     
     // Button Panel - Arm
-    /*
+    
     frontFloorCargoIntakeButton = new JoystickButton(buttonPanel, 1);
     frontHatchButton = new JoystickButton(buttonPanel, 2);
     frontRocketCargoButton = new JoystickButton(buttonPanel, 3);
     frontCargoToCargoShipButton = new JoystickButton(buttonPanel, 4);
     armToStartPositionButton = new JoystickButton(buttonPanel, 5);
     rearCargoToCargoShipButton = new JoystickButton(buttonPanel, 6);
-    rearRocketCargoButton = new JoystickButton(buttonPanel, 7);
-    rearHatchButton = new JoystickButton(buttonPanel, 8);
-    rearFloorCargoIntakeButton = new JoystickButton(buttonPanel, 9);
-    controlArmJs = new JoystickButton(buttonPanel, 11);
-    */
+   
+    
+    controlArmJs = new JoystickButton(buttonPanel, 14);
+    
     // Button Panel - Intake and Climb
     intakeStateChangerButton = new JoystickButton(buttonPanel, 10);
-    rotateArmForwardButton  = new JoystickButton(buttonPanel, 13);
-    rotateArmBackwardButton  = new JoystickButton(buttonPanel, 14);
+    rotateArmForwardButton  = new JoystickButton(buttonPanel, 11);
+    rotateArmBackwardButton  = new JoystickButton(buttonPanel, 12);
     climbMoveForwardButton = new JoystickButton(buttonPanel, 15);
 
     driveTrainModeChangerButton.whileHeld(new DriveTrainModeChanger());
@@ -105,18 +104,16 @@ public class OI {
     openGripperButton.whileHeld(new OpenGripper());
     
     // Arm - Front
-    /*
-    armToStartPositionButton.whileHeld(new ChangeArmTargetAngle(96.0));
-    frontCargoToCargoShipButton.whileHeld(new ChangeArmTargetAngle(133.0));
-    frontHatchButton.whileHeld(new ChangeArmTargetAngle(183.0));
-    frontFloorCargoIntakeButton.whileHeld(new ChangeArmTargetAngle(213.5));
-    frontRocketCargoButton.whileHeld(new ChangeArmTargetAngle(168.0));
+    
+    armToStartPositionButton.whileHeld(new ChangeArmTargetAngle(30.0));
+    frontCargoToCargoShipButton.whileHeld(new ChangeArmTargetAngle(60.0));
+    frontHatchButton.whileHeld(new ChangeArmTargetAngle(133.0));
+    frontFloorCargoIntakeButton.whileHeld(new ChangeArmTargetAngle(163.0));
+    frontRocketCargoButton.whileHeld(new ChangeArmTargetAngle(120.0));
     // Arm - Rear
-    rearCargoToCargoShipButton.whileHeld(new ChangeArmTargetAngle(60.0));
-    rearRocketCargoButton.whileHeld(new ChangeArmTargetAngle(36.0));
-    rearHatchButton.whileHeld(new ChangeArmTargetAngle(16.34));
-    rearFloorCargoIntakeButton.whileHeld(new ChangeArmTargetAngle(-10.0));
-    */
+    rearCargoToCargoShipButton.whileHeld(new ChangeArmTargetAngle(0.0));
+   
+    
     controlArmJs.whileHeld(new ChangeArmTargetAngle(10000.0));
   }
 
